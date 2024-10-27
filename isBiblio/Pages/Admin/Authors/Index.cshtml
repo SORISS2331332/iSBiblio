@@ -1,0 +1,48 @@
+﻿@page
+@model iSBiblio.Pages.Admin.Authors.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Auteur[0].Nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Auteur[0].Prenom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Auteur[0].DateNaissance)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Auteur) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateNaissance)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.AuteurId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.AuteurId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.AuteurId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
