@@ -1,0 +1,75 @@
+﻿@page
+@model iSBiblio.Pages.Autentication.InscriptionModel
+@{
+    ViewData["Title"] = "Inscription";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>iS Biblio</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
+
+<body class="homePage">
+
+    <header class="title">
+        <h2>@ViewData["Title"]</h2>
+    </header>
+    @if (Model.Error)
+    {
+        <div class="alert alert-danger  mt-2 mb-0" role="alert">
+            <p>@Model.Message</p>
+        </div>
+    }
+    <main class="form">
+
+        <div>
+            <form method="post">
+                <div class="mb-3">
+                    <label asp-for="Utilisateur.Nom" class="form-label"></label>
+                    <input asp-for="Utilisateur.Nom" type="text" class="form-control" />
+                    <span asp-validation-for="Utilisateur.Nom" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Utilisateur.Prenom" class="form-label"></label>
+                    <input asp-for="Utilisateur.Prenom" type="text" class="form-control" />
+                    <span asp-validation-for="Utilisateur.Prenom" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Utilisateur.Adresse"  class="form-label"></label>
+                    <input asp-for="Utilisateur.Adresse" type="text" class="form-control" />
+                    <span asp-validation-for="Utilisateur.Adresse" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Utilisateur.Email" class="form-label"></label>
+                    <input asp-for="Utilisateur.Email" type="email" class="form-control" />
+                    <span asp-validation-for="Utilisateur.Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="MotDePasse" class="form-label">Mot de Passe</label>
+                    
+                    
+                    <div class="input-group-append">
+                        <input asp-for="MotDePasse" id="motdepasse" type="password" class="form-control" type="password" />
+                        <span class="input-group-text toggle-password" id="togglePassword">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </span>
+                        
+                    </div>
+                    <span asp-validation-for="MotDePasse" class="text-danger"></span>
+
+                </div>
+                <button type="submit" class="sub text-center btn btn-success">S'inscrire</button>
+            </form>
+        </div>
+    </main>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+
+</body>
+</html>

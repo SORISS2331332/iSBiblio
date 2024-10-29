@@ -19,8 +19,8 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Authentication\" />
     <Folder Include="Components\" />
+    <Folder Include="Models\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

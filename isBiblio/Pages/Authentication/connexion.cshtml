@@ -1,0 +1,55 @@
+﻿@page
+@model iSBiblio.Pages.Autentication.connexionModel
+@{
+    ViewData["Title"] = "Connexion";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>iS Biblio</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
+
+<body class="homePage">
+    <header class="title">
+        <h2>@ViewData["Title"]</h2>
+    </header>
+    
+    @if (Model.error)
+    {
+        <div class="alert alert-danger  mt-2 mb-0" role="alert">
+            Erreur : Ce compte est invalide !
+        </div>
+    }
+    <main class="form">
+        <div class=" login-form">
+            <form method="post">
+                <div class="form-group">
+                    <label for="email">Email </label>
+                    <input type="text" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>                    <div class="input-group-append">
+                        <input type="password" class="form-control" id="motdepasse" name="password" required>
+                        <span class="input-group-text toggle-password" id="togglePassword">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="addUser form-group">
+                    <p>Pas de compte ? <a class="btn btn-outline-success" asp-area="" asp-page="/Authentication/Inscription">S'inscrire ici</a> </p>
+                </div>
+                <button type="submit" class=" sub btn btn-success">Se connecter</button>
+            </form>
+        </div>
+    </main>
+    
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
+</html>

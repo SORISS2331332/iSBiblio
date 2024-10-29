@@ -22,6 +22,8 @@ public partial class BibliothequeContext : DbContext
 
     public virtual DbSet<Livre> Livres { get; set; }
 
+    public virtual DbSet<LivresDisponible> LivresDisponibles { get; set; }
+
     public virtual DbSet<Utilisateur> Utilisateurs { get; set; }
 
     public virtual DbSet<VueEmpruntsActif> VueEmpruntsActifs { get; set; }
@@ -30,7 +32,7 @@ public partial class BibliothequeContext : DbContext
 
     public virtual DbSet<VueUtilisateursAvecLivre> VueUtilisateursAvecLivres { get; set; }
 
-    
+  
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Auteur>(entity =>
@@ -65,6 +67,11 @@ public partial class BibliothequeContext : DbContext
             entity.HasOne(d => d.Auteur).WithMany(p => p.Livres)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Livres__AuteurID__3E52440B");
+        });
+
+        modelBuilder.Entity<LivresDisponible>(entity =>
+        {
+            entity.ToView("LivresDisponibles");
         });
 
         modelBuilder.Entity<Utilisateur>(entity =>

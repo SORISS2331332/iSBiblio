@@ -1,0 +1,48 @@
+﻿@page
+@model iSBiblio.Pages.MenuLivresModel
+@{
+    ViewData["Title"] = "Notre Catalogue";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>iSBiblio</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
+
+<body>
+
+    <header class="title">
+        <h2>Livres à Emprunter</h2>
+    </header>
+    <main>
+        <section class="book-list">
+            @{int nb = 1;}
+            @foreach(var item in Model.Livres){
+                if(nb > 4)
+                {
+                    nb = 1;
+                }
+                var lien = "/img/livre" + nb + ".jpg";
+                nb++;
+                
+                <article class="book">
+                    <img src=@lien alt="Couverture de Livre 1">
+                    <div class="book-info">
+                        <h2>@item.Titre</h2>
+                        <p>Auteur : @item.PrenomAuteur @item.Auteur</p>
+                        <p>Genre : @item.Genre</p>
+                    </div>
+                    <div>
+                        <p><a class="btn btn-outline-success" asp-page="#">Voir Extrait</a></p>
+                        <p><a class="btn btn-outline-success" asp-page="#">Emprunter</a></p>
+                    </div>
+                </article>
+
+            }
+        </section>
+    </main>
+
+</body>
+</html>

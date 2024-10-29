@@ -3,29 +3,25 @@ using iSBiblio.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace iSBiblio.Pages
 {
-    public class UsersModel : PageModel
+    public class MenuLivresModel : PageModel
     {
         private readonly BibliothequeContext _context;
-        public UsersModel(BibliothequeContext context)
+
+        public MenuLivresModel(BibliothequeContext context)
         {
             _context = context;
         }
-
-        public IList<Utilisateur> Utilisateurs { get; set; }
-
-        public async Task OnGetAsync()
+    
+        public IList<LivresDisponible> Livres { get; set; }
+        public async Task  OnGetAsync()
         {
-            Utilisateurs = await _context.Utilisateurs.ToListAsync();
-            foreach (var u in Utilisateurs) { Console.WriteLine(u); }
+            Livres = await _context.LivresDisponibles.ToListAsync();
         }
-
     }
 }

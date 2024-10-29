@@ -1,3 +1,4 @@
+
 using iSBiblio.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -30,7 +31,7 @@ namespace isBiblio
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                            .AddCookie(options =>
                            {
-                               options.LoginPath = "/Admin";
+                               options.LoginPath = "/Authentication/connexion";
                            });
             services.AddDbContext<BibliothequeContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

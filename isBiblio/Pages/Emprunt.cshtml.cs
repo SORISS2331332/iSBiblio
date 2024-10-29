@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace iSBiblio.Pages.Admin
+namespace iSBiblio.Pages
 {
-    public class IndexModel : PageModel
+    public class EmpruntModel : PageModel
     {
         public void OnGet()
         {

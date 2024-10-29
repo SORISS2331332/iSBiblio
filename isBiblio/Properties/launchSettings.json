@@ -2,9 +2,7 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
-      "workingDirectory": "C:\\xampp\\htdocs\\ProjetsPerso\\iSBiblio\\isBiblio\\Models",
       "launchBrowser": true,
-      "launchUrl": "users",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
