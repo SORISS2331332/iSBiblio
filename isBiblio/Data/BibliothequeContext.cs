@@ -28,11 +28,16 @@ public partial class BibliothequeContext : DbContext
 
     public virtual DbSet<VueEmpruntsActif> VueEmpruntsActifs { get; set; }
 
+    public virtual DbSet<VueEmpruntsUser> VueEmpruntsUsers { get; set; }
+
     public virtual DbSet<VueLivresDisponible> VueLivresDisponibles { get; set; }
 
     public virtual DbSet<VueUtilisateursAvecLivre> VueUtilisateursAvecLivres { get; set; }
 
-  
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=Bibliotheque;Integrated Security=True;MultipleActiveResultSets=true;TrustServerCertificate=True;");
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Auteur>(entity =>
@@ -84,6 +89,11 @@ public partial class BibliothequeContext : DbContext
         modelBuilder.Entity<VueEmpruntsActif>(entity =>
         {
             entity.ToView("VueEmpruntsActifs");
+        });
+
+        modelBuilder.Entity<VueEmpruntsUser>(entity =>
+        {
+            entity.ToView("VueEmpruntsUser");
         });
 
         modelBuilder.Entity<VueLivresDisponible>(entity =>

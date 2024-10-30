@@ -52,5 +52,12 @@ GO
 
 
 
+CREATE VIEW VueEmpruntsUser AS
+SELECT e.EmpruntID, l.Titre,l.Genre, u.Email, e.DateEmprunt, e.DateRetour
+FROM Emprunts e
+JOIN Livres l ON e.LivreID = l.LivreID
+JOIN Utilisateurs u ON e.UtilisateurID = u.UtilisateurID
+GO
+
 
 

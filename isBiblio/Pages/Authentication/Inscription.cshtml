@@ -3,73 +3,95 @@
 @{
     ViewData["Title"] = "Inscription";
 }
+@{
+    Layout = null;
+}
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>iS Biblio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - iS Biblio</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/styleR.css" />
 </head>
-
-<body class="homePage">
-
-    <header class="title">
-        <h2>@ViewData["Title"]</h2>
-    </header>
-    @if (Model.Error)
-    {
-        <div class="alert alert-danger  mt-2 mb-0" role="alert">
-            <p>@Model.Message</p>
-        </div>
-    }
-    <main class="form">
-
-        <div>
-            <form method="post">
-                <div class="mb-3">
-                    <label asp-for="Utilisateur.Nom" class="form-label"></label>
-                    <input asp-for="Utilisateur.Nom" type="text" class="form-control" />
-                    <span asp-validation-for="Utilisateur.Nom" class="text-danger"></span>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3">
+            <div class="container">
+                <div><a class="navbar-brand logo" asp-area="" asp-page="/Index"><img src="~/img/myLogo.png" alt="Logo" /></a></div>
+                <button class="defile navbar-toggler " type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-success" asp-area="" asp-page="/Index">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  btn btn-outline-success" asp-area="" asp-page="/MenuLivres">Catalogue</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-success" asp-area="" asp-page="/contact">Contact</a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="Utilisateur.Prenom" class="form-label"></label>
-                    <input asp-for="Utilisateur.Prenom" type="text" class="form-control" />
-                    <span asp-validation-for="Utilisateur.Prenom" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="Utilisateur.Adresse"  class="form-label"></label>
-                    <input asp-for="Utilisateur.Adresse" type="text" class="form-control" />
-                    <span asp-validation-for="Utilisateur.Adresse" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="Utilisateur.Email" class="form-label"></label>
-                    <input asp-for="Utilisateur.Email" type="email" class="form-control" />
-                    <span asp-validation-for="Utilisateur.Email" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="MotDePasse" class="form-label">Mot de Passe</label>
-                    
-                    
-                    <div class="input-group-append">
-                        <input asp-for="MotDePasse" id="motdepasse" type="password" class="form-control" type="password" />
-                        <span class="input-group-text toggle-password" id="togglePassword">
-                            <i class="fa fa-eye" aria-hidden="true"></i>
-                        </span>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                     <a id="con" class="nav-link text-white border-2 btn btn-outline-success" asp-area="" asp-page="Authentication/connexion">Se connecter</a>
                         
-                    </div>
-                    <span asp-validation-for="MotDePasse" class="text-danger"></span>
-
                 </div>
-                <button type="submit" class="sub text-center btn btn-success">S'inscrire</button>
-            </form>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="R-container" id="R-container">
+            <div class="form-contain login-contain">
+                <form method="post">
+                    <h1>Inscription</h1>
+                    <input asp-for="Utilisateur.Nom" placeholder="Nom" type="text" class="form-control" />
+                    <span asp-validation-for="Utilisateur.Nom" class="text-danger"></span>
+
+                    <input asp-for="Utilisateur.Prenom" placeholder="Prénom" type="text" class="form-control" />
+                    <span asp-validation-for="Utilisateur.Prenom" class="text-danger"></span>
+
+                    <input asp-for="Utilisateur.Adresse" placeholder="Adresse" type="text" class="form-control" />
+                    <span asp-validation-for="Utilisateur.Adresse" class="text-danger"></span>
+
+                    <input asp-for="Utilisateur.Email" placeholder="Email" type="email" class="form-control" />
+                    <span asp-validation-for="Utilisateur.Email" class="text-danger"></span>
+
+
+                    <input asp-for="MotDePasse" id="motdepasse" placeholder="Mot de passe" type="password" class="form-control" type="password" />
+                    <span asp-validation-for="MotDePasse" class="text-danger"></span>
+                    <button class="button" type="submit">Valider</button>
+                </form>
+            </div>
+            <div class="R-overlay-contain">
+                <div class="R-overlay">
+                    <div class="R-overlay-panel R-overlay-right">
+                        <p class="tree"><img src="~/img/Well.png" alt="IMG"></p>
+                        <p>Avez vous déjà de compte ?</p>
+                        <div class="button"><a class=" ghost" id="signUp" asp-area="" asp-page="/Authentication/connexion">Se connecter</a></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
-    @section Scripts {
-        @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
-        }
-    }
+    <footer class="border-top footer">
+        <div class="container">
+            &copy; 2024 - iS Biblio  Tous droits réservés
+        </div>
+    </footer>
 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 </html>

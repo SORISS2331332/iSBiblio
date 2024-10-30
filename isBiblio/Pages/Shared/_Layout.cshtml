@@ -18,7 +18,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav mx-auto flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link btn btn-outline-success" asp-area="" asp-page="/Index">Accueil</a>
                         </li>
@@ -32,14 +32,8 @@
                 </div>
                 @if (!Context.User.Identity.IsAuthenticated)
                 {
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-
-                            <li class="nav-item">
-                                <a class="nav-link  btn btn-outline-success" asp-area="" asp-page="Authentication/connexion">Se connecter</a>
-                            </li>
-                            
-                        </ul>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                        <a id="con" class="nav-link text-white border-2 btn btn-outline-success" asp-area="" asp-page="Authentication/connexion">Se connecter</a>
                     </div>
                 }
                 
