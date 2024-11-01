@@ -84,13 +84,16 @@ body.homePage {
         object-fit: cover;
     }
 
-
+.container main{
+    display: flex;
+    flex-direction: column;
+}
 
 .centered {
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 20px;
 }
 .centered a img {

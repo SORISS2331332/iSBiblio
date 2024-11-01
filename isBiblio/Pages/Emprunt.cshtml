@@ -4,10 +4,7 @@
     ViewData["Title"] = "Vos Emprunts";
 }
 
-
-<header class="title">
-    <h2>Mes Livres</h2>
-</header>
+<h2 class="title">Mes Livres</h2>
 @if (!string.IsNullOrEmpty(Model.Message))
 {
     <p class="dossier text-center alert alert-success" role="alert">@Model.Message</p>
@@ -16,9 +13,9 @@
     <div class="book-liste">
         @{int nb = 1;}
                 
-        @if(Model.userEmprunts == null)
+        @if (Model.userEmprunts == null || !Model.userEmprunts.Any())
         {
-            <p class="dossier alert alert-danger" role="alert">Votre dossier de lecture est vide !</p>
+            <p class="dossier text-center text-black-50 alert alert-danger" role="alert">Votre dossier de lecture est vide !</p>
         }
         else
         {
@@ -41,7 +38,7 @@
                         }
                         @if((info.DateRetour < DateOnly.FromDateTime(DateTime.Now)) || info.DateRetour == null)
                         {
-                            <p><a class="btn btn-outline-success" asp-page="Emprunter" asp-route-Id="@info">Retourner Le Livre</a></p>
+                            <p><a class="btn btn-outline-success" asp-page="/Retourner" asp-route-Id="@info.EmpruntId">Retourner Le Livre</a></p>
                         }
                                 
                     </div>
