@@ -30,7 +30,6 @@ namespace iSBiblio.Pages
         public Emprunt Emprunt { get; set; }
         public Utilisateur utilisateur {  get; set; }
 
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public IActionResult OnGet(int id)
         {
             LivreId = id;
@@ -52,6 +51,7 @@ namespace iSBiblio.Pages
 
                     if (row > 0)
                     {
+                        TempData["Message"] = "Vous avez emprunté un livre avec succès !";
                         return Redirect("/Emprunt");
 
                     }

@@ -63,16 +63,13 @@
                     <input type="email" placeholder="Email" name="email" required>
                     <input type="password" placeholder="Mot de passe" name="password" required>
                     <button class="button" type="submit">Se connecter</button>
+                    <div id="adapt" class="button"><a class=" ghost" id="signUp" asp-area="" asp-page="/Authentication/Inscription">Créer un compte</a></div>
                 </form>
             </div>
             <div class="R-overlay-contain">
-                <div class="R-overlay">
-                    <div class="R-overlay-panel R-overlay-right">
-                        <p class="tree"><img src="~/img/Well.png" alt="IMG"></p>
-                        <p >Vous n'avez pas de compte ?</p>
-                        <div class="button"><a class=" ghost" id="signUp" asp-area="" asp-page="/Authentication/Inscription">Créer un compte</a></div>
-                    </div>
-                </div>
+                    <img id="form-img" src="~/img/Well.png" alt="IMG">
+                    <p>Vous n'avez pas de compte ?</p>
+                    <div class="button"><a class=" ghost" id="signUp" asp-area="" asp-page="/Authentication/Inscription">Créer un compte</a></div>
             </div>
         </div>
     </main>

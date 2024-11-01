@@ -1,55 +1,53 @@
 ﻿@page
 @model iSBiblio.Pages.EmpruntModel
 @{
+    ViewData["Title"] = "Vos Emprunts";
 }
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>iSBiblio</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/style.css" />
-</head>
 
-<body>
 
-    <header class="title">
-        <h2>Mes Livres</h2>
-    </header>
-    <main class="emprunt">
-        <div class=" container mt-5">
-            <div class="book-liste">
-                @{int nb = 1;}
-                @if(Model.userEmprunts == null)
-                {
-                    <p class="dossier alert alert-danger" role="alert">Votre dossier de lecture est vide !</p>
-                }
-                else
-                {
-                    @foreach (var info in Model.userEmprunts)
-                    {
-                        if (nb > 4)
-                        {
-                            nb = 1;
-                        }
-                        var lien = "/img/livre" + nb + ".jpg";
-                        nb++;
-                        <div class="card book-card">
-                            <img src="@lien" class="card-img-top" alt="Couverture de Livre">
-                            <div class="card-body">
-                                <h5 class="card-title">@info.Titre</h5>
-                                <p class="card-text text-black-50">Date d'emprunt : @info.DateEmprunt</p>
-                                @if(info.DateRetour != null)
-                                {
-                                    <p class="card-text text-black-50">Date de retour : @info.DateRetour</p>
-                                }
-                                
-                            </div>
-                        </div>
-                    }
-                }
+<header class="title">
+    <h2>Mes Livres</h2>
+</header>
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <p class="dossier text-center alert alert-success" role="alert">@Model.Message</p>
+}
+<div class=" container mt-5">
+    <div class="book-liste">
+        @{int nb = 1;}
                 
-            </div>
-        </div>
-    </main>
-
-</body>
-</html>
+        @if(Model.userEmprunts == null)
+        {
+            <p class="dossier alert alert-danger" role="alert">Votre dossier de lecture est vide !</p>
+        }
+        else
+        {
+            @foreach (var info in Model.userEmprunts)
+            {
+                if (nb > 4)
+                {
+                    nb = 1;
+                }
+                var lien = "/img/livre" + nb + ".jpg";
+                nb++;
+                <div class="card book-card">
+                    <img src="@lien" class="card-img-top" alt="Couverture de Livre">
+                    <div class="card-body book-info">
+                        <h2 class="card-title">@info.Titre</h2>
+                        <p>  <span>Pris le @info.DateEmprunt</span></p>
+                        @if(info.DateRetour != null)
+                        {
+                            <p>  <span>Retour: @info.DateRetour</span></p>
+                        }
+                        @if((info.DateRetour < DateOnly.FromDateTime(DateTime.Now)) || info.DateRetour == null)
+                        {
+                            <p><a class="btn btn-outline-success" asp-page="Emprunter" asp-route-Id="@info">Retourner Le Livre</a></p>
+                        }
+                                
+                    </div>
+                </div>
+            }
+        }
+                
+    </div>
+</div>

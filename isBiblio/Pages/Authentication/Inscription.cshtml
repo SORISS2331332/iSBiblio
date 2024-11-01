@@ -54,32 +54,24 @@
             <div class="form-contain login-contain">
                 <form method="post">
                     <h1>Inscription</h1>
-                    <input asp-for="Utilisateur.Nom" placeholder="Nom" type="text" class="form-control" />
-                    <span asp-validation-for="Utilisateur.Nom" class="text-danger"></span>
+                    <input asp-for="Utilisateur.Nom" placeholder="Nom" type="text" class="form-control" required/>
 
-                    <input asp-for="Utilisateur.Prenom" placeholder="Prénom" type="text" class="form-control" />
-                    <span asp-validation-for="Utilisateur.Prenom" class="text-danger"></span>
+                    <input asp-for="Utilisateur.Prenom" placeholder="Prénom" type="text" class="form-control" required/>
 
-                    <input asp-for="Utilisateur.Adresse" placeholder="Adresse" type="text" class="form-control" />
-                    <span asp-validation-for="Utilisateur.Adresse" class="text-danger"></span>
+                    <input asp-for="Utilisateur.Adresse" placeholder="Adresse" type="text" class="form-control" required />
 
-                    <input asp-for="Utilisateur.Email" placeholder="Email" type="email" class="form-control" />
-                    <span asp-validation-for="Utilisateur.Email" class="text-danger"></span>
+                    <input asp-for="Utilisateur.Email" placeholder="Email" type="email" class="form-control" required />
 
 
-                    <input asp-for="MotDePasse" id="motdepasse" placeholder="Mot de passe" type="password" class="form-control" type="password" />
-                    <span asp-validation-for="MotDePasse" class="text-danger"></span>
+                    <input asp-for="MotDePasse" id="motdepasse" placeholder="Mot de passe" type="password" class="form-control" type="password" required/>
                     <button class="button" type="submit">Valider</button>
+                    <div id="adapt" class="button"><a class=" ghost" id="signUp" asp-area="" asp-page="/Authentication/connexion">Se Connecter</a></div>
                 </form>
             </div>
             <div class="R-overlay-contain">
-                <div class="R-overlay">
-                    <div class="R-overlay-panel R-overlay-right">
-                        <p class="tree"><img src="~/img/Well.png" alt="IMG"></p>
-                        <p>Avez vous déjà de compte ?</p>
-                        <div class="button"><a class=" ghost" id="signUp" asp-area="" asp-page="/Authentication/connexion">Se connecter</a></div>
-                    </div>
-                </div>
+                <img id="form-img" src="~/img/Well.png" alt="IMG">
+                <p>Avez vous déjà de compte ?</p>
+                <div class="button"><a class=" ghost" id="signUp" asp-area="" asp-page="/Authentication/connexion">Se connecter</a></div>
             </div>
         </div>
     </main>
