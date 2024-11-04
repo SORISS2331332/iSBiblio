@@ -1,5 +1,6 @@
 using iSBiblio.Data;
 using iSBiblio.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -11,8 +12,10 @@ using System.Threading.Tasks;
 
 namespace iSBiblio.Pages
 {
+    [Authorize]
     public class EmpruntModel : PageModel
     {
+
         private readonly BibliothequeContext _context;
         public string Message { get; private set; }
         public EmpruntModel(BibliothequeContext context)

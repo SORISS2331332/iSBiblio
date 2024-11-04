@@ -1,5 +1,6 @@
 using iSBiblio.Data;
 using iSBiblio.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
@@ -8,6 +9,7 @@ using System.Security.Claims;
 
 namespace iSBiblio.Pages
 {
+    [Authorize]
     public class RetournerModel : PageModel
     {
         private readonly BibliothequeContext _context;

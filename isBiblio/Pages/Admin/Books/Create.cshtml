@@ -2,16 +2,16 @@
 @model iSBiblio.Pages.Admin.Books.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    Layout = "AdminLayout";
+    ViewData["Title"] = "Ajout de Livre";
 }
 
-<h1>Create</h1>
+<h1 class="title w-100">Ajout de Livre</h1>
 
-<h4>Livre</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
+<div class="row ">
+    <div class="col-md-4 text-white">
+        <form method="post" class="adminForm">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Livre.Titre" class="control-label"></label>
@@ -19,28 +19,28 @@
                 <span asp-validation-for="Livre.Titre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Livre.AuteurId" class="control-label"></label>
+                <label asp-for="Livre.AuteurId" class="control-label">Auteur</label>
                 <select asp-for="Livre.AuteurId" class ="form-control" asp-items="ViewBag.AuteurId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Livre.AnneePublication" class="control-label"></label>
-                <input asp-for="Livre.AnneePublication" class="form-control" />
+                <label asp-for="Livre.AnneePublication" class="control-label">Publication</label>
+                <input asp-for="Livre.AnneePublication" placeholder="aaaa" class="form-control" />
                 <span asp-validation-for="Livre.AnneePublication" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Livre.Genre" class="control-label"></label>
-                <input asp-for="Livre.Genre" class="form-control" />
+                <input asp-for="Livre.Genre"  class="form-control" />
                 <span asp-validation-for="Livre.Genre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Valider" class="valider text-white btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
+<div class="Retour">
+    <a class="btn btn-danger text-white" asp-page="Index">Retour</a>
 </div>
 
 @section Scripts {

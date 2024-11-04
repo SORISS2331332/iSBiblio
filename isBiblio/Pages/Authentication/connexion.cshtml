@@ -48,18 +48,20 @@
             </div>
         </nav>
     </header>
-    @if (Model.error)
-    {
-        <div class="alert alert-danger  mt-2 mb-0" role="alert">
-            Erreur : Ce compte est invalide !
-        </div>
-    }
+   
 
     <main>
         <div class="R-container" id="R-container">
+            
             <div class="form-contain login-contain">
                 <form method="post">
                     <h1>Connexion</h1>
+                    @if (Model.error)
+                    {
+                        <div class="alert alert-danger text-center mt-2 mb-0" role="alert">
+                            Compte invalide !
+                        </div>
+                    }
                     <input type="email" placeholder="Email" name="email" required>
                     <input type="password" placeholder="Mot de passe" name="password" required>
                     <button class="button" type="submit">Se connecter</button>

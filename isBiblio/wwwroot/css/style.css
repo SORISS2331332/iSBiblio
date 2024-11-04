@@ -249,22 +249,129 @@ main {
 .emprunt{
     margin-bottom: 50px;
 }
+.profil {
+    backdrop-filter: blur(4px);
+}
+.profil .profile-info span{
+    color: white;
+    font-size:30px;
+    margin-right: 25px;
+}
+.profile-info{
+    margin: 25px;
+    color: white;
+    font-size: 25px;
+}
 
+.adminForm, .Retour {
+    backdrop-filter: blur(4px);
+    padding: 10px;
+}
+    .adminForm label, .valider, .Retour a {
+        font-size: 25px;
+    }
+    .adminForm label {
+        font-size: 25px;
+    }
+    .adminForm input {
+        width:60%;
+    }
 
+    .adminForm td {
+        color: white;
+        font-size: 15px;
+    }
+        .adminForm td a {
+            color: white;
+            font-size: 14px;
+        }
 
-
-
-
-@media (max-width: 480px) {
-    body {
+    .adminForm tr th{
+        font-size: 20px;
+    }
+    @media (max-width: 480px) {
+        body {
         width: 100%;
     }
-
-    .book {
-        flex-direction:column;
-        align-items:flex-start;
+    .book-list{
+        flex-direction: row;
+        justify-content:space-between;
+        flex-wrap:wrap;
     }
+    .book {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-right: 20px;
+        width:120px;
+        height:155px;
+    }
+    .book img{
+        width:35px;
+        height:50px;
+    }
+    .book-info h2{
+        padding-top:5px;
+        font-size:10px;
+    }
+    .book-info span {
+        font-size: 5px;
+        width:100%;
+        display: inline-block;
+        margin:2px;
+        padding:2px;
+    }
+    .book-info i {
+        padding: 2px;
+    }
+    .book-info p {
+        font-size:8px;
+        padding:0;
+        margin:0;
+        width:80%;
+    }
+    .book .opt {
+        height:fit-content;
+        display:flex;
+        flex-direction:row;
+    }
+    .book .opt p a{
+        font-size: 8px;
+        padding: 5px;
+        margin: 2px;
+        width: 100%;
+        
+    }
+        .book .opt p  {
+            padding-right: 5px;
+        }
 
+
+    .book-card{
+        width: 80px;
+        height:150px
+    }
+    .book-card img {
+        width: 80px;
+        height: 100px;
+        padding:0;
+        margin:0;
+    }
+        .book-card h2 {
+
+            font-size: 8px;
+            margin:0;
+            padding:0;
+        }
+
+        .book-card .book-info{
+            padding:0;
+        }
+
+            .book-card .book-info p a {
+                font-size: 8px;
+                margin-bottom: 10px;
+                padding: 0;
+            }
     h1 {
         font-size: 1.5em;
     }

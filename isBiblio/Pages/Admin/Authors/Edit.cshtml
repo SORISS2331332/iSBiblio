@@ -2,16 +2,15 @@
 @model iSBiblio.Pages.Admin.Authors.EditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    Layout = "AdminLayout";
+    ViewData["Title"] = "Editer";
 }
 
-<h1>Edit</h1>
+<h1 class="title w-100">Editer</h1>
 
-<h4>Auteur</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form method="post">
+    <div class="col-md-4 text-white font-weight-bold">
+        <form  class="adminForm" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Auteur.AuteurId" />
             <div class="form-group">
@@ -20,24 +19,24 @@
                 <span asp-validation-for="Auteur.Nom" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Auteur.Prenom" class="control-label"></label>
+                <label asp-for="Auteur.Prenom" class="control-label">Prénom</label>
                 <input asp-for="Auteur.Prenom" class="form-control" />
                 <span asp-validation-for="Auteur.Prenom" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Auteur.DateNaissance" class="control-label"></label>
+                <label asp-for="Auteur.DateNaissance" class="control-label">Naissance</label>
                 <input asp-for="Auteur.DateNaissance" class="form-control" />
                 <span asp-validation-for="Auteur.DateNaissance" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Sauvegarder" class=" valider text-white btn btn-success w-100" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
+<div class="Retour">
+    <a class=" btn btn-danger" asp-page="./Index">Retour</a>
 </div>
 
 @section Scripts {

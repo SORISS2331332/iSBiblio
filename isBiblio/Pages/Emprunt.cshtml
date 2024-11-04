@@ -38,7 +38,7 @@
                         }
                         @if((info.DateRetour < DateOnly.FromDateTime(DateTime.Now)) || info.DateRetour == null)
                         {
-                            <p><a class="btn btn-outline-success" asp-page="/Retourner" asp-route-Id="@info.EmpruntId">Retourner Le Livre</a></p>
+                            <p><a class="btn btn-outline-success" asp-page="/Retourner" asp-route-Id="@info.EmpruntId">Remettre</a></p>
                         }
                                 
                     </div>

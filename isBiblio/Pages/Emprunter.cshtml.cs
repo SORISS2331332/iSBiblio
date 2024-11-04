@@ -1,5 +1,6 @@
 using iSBiblio.Data;
 using iSBiblio.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
@@ -13,6 +14,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace iSBiblio.Pages
 {
+    [Authorize]
     public class EmprunterModel : PageModel
     {
         private readonly BibliothequeContext _context;

@@ -2,31 +2,29 @@
 @model iSBiblio.Pages.Admin.Books.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    Layout = "AdminLayout";
+    ViewData["Title"] = "Gestion de Livres";
 }
 
-<h1>Index</h1>
+<h1 class="title w-100">Gestion de Livres</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" class="valider btn btn-primary text-white">Ajouter</a>
 </p>
-<table class="table">
+<table class="adminForm table text-white">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Livre[0].Titre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Livre[0].LienImage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Livre[0].AnneePublication)
+                Publication
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Livre[0].Genre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Livre[0].Disponibilite)
+                Etat
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Livre[0].Auteur)
@@ -40,25 +38,28 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Titre)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LienImage)
-            </td>
-            <td>
+            <td class="text-center">
                 @Html.DisplayFor(modelItem => item.AnneePublication)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Genre)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Disponibilite)
+            <td class="text-center">
+                    @if ((bool)item.Disponibilite)
+                    {
+                        <p>Disponible</p>
+                    }
+                    else
+                    {
+                        <p>Indisponible</p>
+                    }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Auteur.Nom)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.LivreId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.LivreId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.LivreId">Delete</a>
+                    <a asp-page="./Edit" asp-route-id="@item.LivreId" class="m-2 btn btn-primary">Editer</a> 
+                    <a asp-page="./Delete" asp-route-id="@item.LivreId" class="btn btn-danger">Retirer</a>
             </td>
         </tr>
 }

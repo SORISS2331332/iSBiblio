@@ -126,20 +126,6 @@ main{
 
 
 
-
-@media (min-width: 768px) {
-
-	.R-overlay {
-		text-align: center;
-		color: white;
-	}
-
-	#form-img {
-		width: 100%;
-		max-width: 200px; 
-	}
-}
-
 @media (max-width: 767px) {
 	.R-container {
 		flex-direction: column; 

@@ -2,3 +2,29 @@
 @model iSBiblio.Pages.ProfilModel
 @{
 }
+
+
+
+<h2 class="title">Profil</h2>
+
+<section class="profil">
+    <div class="profile-info">
+        <span class="label">Prénom :</span> @Model.UtilisateurConnected.Prenom
+    </div>
+    <div class="profile-info">
+        <span class="label">Nom  :</span> @Model.UtilisateurConnected.Nom
+    </div>
+    <div class="profile-info">
+        <span class="label">Email :</span> @Model.UtilisateurConnected.Email
+    </div>
+    <div class="profile-info">
+        <span class="label">Adresse :</span> @Model.UtilisateurConnected.Adresse
+    </div>
+    <div class="profile-info">
+        <span class="label">Mot de Passe :</span> **********
+    </div>
+
+    <div>
+        <a asp-page="/Index" class="btn btn-primary">Retour à l'accueil</a>
+    </div>
+</section>
