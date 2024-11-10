@@ -13,9 +13,9 @@ namespace iSBiblio.Pages.Admin.Authors
 {
     public class EditModel : PageModel
     {
-        private readonly iSBiblio.Data.BibliothequeContext _context;
+        private readonly BibliothequeContext _context;
 
-        public EditModel(iSBiblio.Data.BibliothequeContext context)
+        public EditModel(BibliothequeContext context)
         {
             _context = context;
         }

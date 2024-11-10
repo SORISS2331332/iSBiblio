@@ -9,7 +9,7 @@ using System.Security.Claims;
 
 namespace iSBiblio.Pages
 {
-    [Authorize]
+    [Authorize(Roles = "User")]
     public class RetournerModel : PageModel
     {
         private readonly BibliothequeContext _context;
@@ -27,9 +27,8 @@ namespace iSBiblio.Pages
         public Emprunt Emprunt { get; set; }
         public Utilisateur utilisateur { get; set; }
 
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet()
         {
-            EmpruntID = id;
             var userEmail = User.FindFirstValue(ClaimTypes.Name);
             utilisateur = _context.Utilisateurs.FirstOrDefault(u => u.Email == userEmail);
 

@@ -1,0 +1,159 @@
+﻿@page "/Categorie"
+@model iSBiblio.Pages.CategorieModel
+
+
+@{
+    ViewData["Title"] = "Catégorie";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - iS Biblio</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/styleR.css" />
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3">
+            <div class="container">
+                <div><a class="navbar-brand logo" asp-page="/Index"><img src="~/img/myLogo.png" alt="Logo" /></a></div>
+                <button class="defile navbar-toggler " type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-success"  asp-page="/Index">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  btn btn-outline-success" asp-page="/categorie">Catalogue</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-success" asp-page="/contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                @if (!HttpContext.User.Identity.IsAuthenticated)
+                {
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                        <a id="con" class="nav-link text-white border-2 btn btn-outline-success" asp-page="Authentication/connexion">Se connecter</a>
+                    </div>
+                }
+
+                @if (HttpContext.User.Identity.IsAuthenticated)
+                {
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                        <ul class="navbar-nav ">
+                            <li class="nav-item">
+                                <a class="nav-link  btn btn-outline-success" asp-page="/Emprunt">Emprunts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white btn btn-danger" asp-page-handler="Logout" asp-page="/Authentication/connexion">Deconnexion</a>
+                            </li>
+                        </ul>
+                        <div class="nav-item">
+                            <a class="navbar-brand user"  asp-page="/Profil"><img src="~/img/user.png" alt="Logo" /></a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </nav>
+    </header>
+   
+        
+    <div class="category-header">
+        <h1>Explorez Nos Catégories de Livres</h1>
+    </div>
+        <section class="categories">
+            <div  id="cat-all">
+               <div class="category" id="all">
+                    <a asp-page="MenuLivres">
+                        <div class="category-content">
+                            <img src="~/img/all.jpeg" alt="Toute categorie">
+                            <h3>Toutes les catégories</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <a href="@Url.Page("/MenuLivres", new {name = "fiction"})">
+               <div class="category">
+                     <img src="~/img/fiction.jpeg" alt="Fiction">
+                    <div class="category-content">
+                        <h3>Fiction</h3>
+                        <p>Explorez une large sélection de livres de fiction, des classiques aux nouvelles sorties.</p>
+                    </div>
+                </div>
+            </a>
+
+        <a href="@Url.Page("/MenuLivres", new {name = "Science"})">
+                <div class="category">
+                    <img src="~/img/science.jpeg" alt="Science">
+                    <div class="category-content">
+                        <h3>Science</h3>
+                        <p>Découvrez des ouvrages fascinants sur la science, la biologie, la physique et bien plus encore.</p>
+                    </div>
+                </div>
+            </a>
+
+
+        <a href="@Url.Page("/MenuLivres", new {name = "histoire"})">
+                <div class="category">
+                    <img src="~/img/histoire.jpeg" alt="Histoire">
+                    <div class="category-content">
+                        <h3>Histoire</h3>
+                        <p>Plongez dans l'histoire du monde à travers des récits captivants et des analyses approfondies.</p>
+                    </div>
+                </div>
+            </a>
+
+        <a href="@Url.Page("/MenuLivres", new {name = "Philosophie"})">
+                <div class="category">
+                    <img src="~/img/philosophie.jpeg" alt="Philosophie">
+                    <div class="category-content">
+                        <h3>Philosophie</h3>
+                        <p>Réfléchissez sur les grandes questions de l'existence, de l'éthique et de la pensée humaine.</p>
+                    </div>
+                </div>
+            </a>
+
+        <a href="@Url.Page("/MenuLivres", new {name = "Art"})">
+                <div class="category">
+                    <img src="~/img/art.jpeg" alt="Art">
+                    <div class="category-content">
+                        <h3>Art</h3>
+                        <p>Un voyage dans l'univers de l'art à travers des livres d'art, des biographies et des critiques.</p>
+                    </div>
+                </div>
+           </a>
+
+        <a href="@Url.Page("/MenuLivres", new {name = "Voyage"})">
+                <div class="category">
+                    <img src="~/img/voyage.jpeg" alt="Voyage">
+                    <div class="category-content">
+                        <h3>Voyage</h3>
+                        <p>Explorez des récits de voyage, des guides pratiques et des histoires inspirantes sur le monde.</p>
+                    </div>
+                </div>
+            </a>
+        </section>
+
+    <footer class="border-top footer">
+        <div class="container">
+            &copy; 2024 - iS Biblio  Tous droits réservés
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

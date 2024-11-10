@@ -123,10 +123,6 @@ AS
 BEGIN
     INSERT INTO Emprunts (LivreID, UtilisateurID, DateEmprunt)
     VALUES (@LivreID, @UtilisateurID, GETDATE());
-    
-    UPDATE Livres
-    SET Disponibilite = 0
-    WHERE LivreID = @LivreID;
 END;
 GO
 

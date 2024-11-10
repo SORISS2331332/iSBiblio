@@ -31,6 +31,7 @@ public partial class Utilisateur
     [Required]
     [MaxLength(255)]
     public byte[] MotDePasse { get; set; }
+    public string Role { get; set; }
 
     public DateOnly? DateInscription { get; set; }
 

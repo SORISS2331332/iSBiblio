@@ -1,6 +1,14 @@
 ﻿@page
 @model iSBiblio.Pages.ProfilModel
 @{
+    if(Model.Role == "Admin")
+    {
+        Layout = "AdminLayout";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
 }
 
 

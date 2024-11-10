@@ -6,12 +6,14 @@ EXEC AjouterUtilisateur
     @Prenom = 'Jean',
     @Adresse = '123 Rue de la Bibliothèque',
     @Email = 'jean.dupont@example.com',
-    @MotDePasse = 'MonMotDePasseHaché'; -- Remplacez par le mot de passe haché
+    @MotDePasse = 'Password'; -- Remplacez par le mot de passe haché
 
+
+    
 -- 2. Authentifier un utilisateur
 EXEC AuthentifierUtilisateur 
     @Email = 'jean.dupont@example.com',
-    @MotDePasse = 'MonMotDePasseHaché', -- Remplacez par le mot de passe à comparer
+    @MotDePasse = 'Password', -- Remplacez par le mot de passe à comparer
     @Resultat = @Resultat OUTPUT;
 
 SELECT @Resultat AS AuthentificationResultat; -- 1 pour succès, 0 pour échec

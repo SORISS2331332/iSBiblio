@@ -34,7 +34,7 @@
                             <a class="nav-link btn btn-outline-success" asp-area="" asp-page="/Index">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  btn btn-outline-success" asp-area="" asp-page="/MenuLivres">Catalogue</a>
+                            <a class="nav-link  btn btn-outline-success" asp-area="" asp-page="/categorie">Catalogue</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-outline-success" asp-area="" asp-page="/contact">Contact</a>
@@ -54,6 +54,12 @@
             <div class="form-contain login-contain">
                 <form method="post">
                     <h1>Inscription</h1>
+                    @if (Model.Error)
+                    {
+                        <div class="alert alert-danger text-center mt-2 mb-0" role="alert">
+                            Email invalide !
+                        </div>
+                    }
                     <input asp-for="Utilisateur.Nom" placeholder="Nom" type="text" class="form-control" required/>
 
                     <input asp-for="Utilisateur.Prenom" placeholder="Prénom" type="text" class="form-control" required/>

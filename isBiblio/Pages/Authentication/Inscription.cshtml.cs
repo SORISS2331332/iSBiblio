@@ -14,12 +14,13 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System;
+using System.Data;
 
 namespace iSBiblio.Pages.Autentication
 {
     public class InscriptionModel : PageModel
     {
-        public bool Error;
+        public bool Error { get; set; } = false;
         public string Message { get; set; }
         private readonly BibliothequeContext _context;
 
@@ -36,6 +37,7 @@ namespace iSBiblio.Pages.Autentication
 
         public void OnGet()
         {
+
         }
 
         public IActionResult OnPost()
@@ -49,7 +51,7 @@ namespace iSBiblio.Pages.Autentication
                     connection.Open();
                     using (var command = new SqlCommand("AjouterUtilisateur", connection))
                     {
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.Add(new SqlParameter("@Nom", Utilisateur.Nom));
                         command.Parameters.Add(new SqlParameter("@Prenom", Utilisateur.Prenom));
                         command.Parameters.Add(new SqlParameter("@Adresse", Utilisateur.Adresse));
@@ -71,14 +73,9 @@ namespace iSBiblio.Pages.Autentication
                     }
                 }
             }
-            catch (SqlException ex)
+            catch
             {
-                Message = $"Erreur SQL: {ex.Message}";
-                return Page();
-            }
-            catch (Exception ex)
-            {
-                Message = $"Erreur SQL: {ex.Message}";
+                Error = true;
                 return Page();
             }
         }

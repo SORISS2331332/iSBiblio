@@ -15,8 +15,10 @@ CREATE TABLE Utilisateurs (
     Email NVARCHAR(255) UNIQUE NOT NULL,
     MotDePasse VARBINARY(255) NOT NULL, -- Stocké en hash
     DateInscription DATE DEFAULT GETDATE(),
-    Sel             UNIQUEIDENTIFIER 
+    Sel             UNIQUEIDENTIFIER,
+    Role     NVARCHAR(50) 
 );
+
 GO
 -- Table des Auteurs
 CREATE TABLE Auteurs (
@@ -25,6 +27,7 @@ CREATE TABLE Auteurs (
     Prenom NVARCHAR(100) NOT NULL,
     DateNaissance DATE
 );
+
 GO
 
 -- Table des Livres
@@ -52,12 +55,7 @@ GO
 
 
 
-CREATE VIEW VueEmpruntsUser AS
-SELECT e.EmpruntID, l.Titre,l.Genre, u.Email, e.DateEmprunt, e.DateRetour
-FROM Emprunts e
-JOIN Livres l ON e.LivreID = l.LivreID
-JOIN Utilisateurs u ON e.UtilisateurID = u.UtilisateurID
-GO
+
 
 
 

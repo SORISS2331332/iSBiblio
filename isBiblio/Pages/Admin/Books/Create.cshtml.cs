@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using iSBiblio.Data;
 using iSBiblio.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace iSBiblio.Pages.Admin.Books
 {
+    [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly iSBiblio.Data.BibliothequeContext _context;

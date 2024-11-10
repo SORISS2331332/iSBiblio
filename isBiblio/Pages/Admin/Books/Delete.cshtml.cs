@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using iSBiblio.Data;
 using iSBiblio.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace iSBiblio.Pages.Admin.Books
 {
+    [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
         private readonly iSBiblio.Data.BibliothequeContext _context;

@@ -21,10 +21,10 @@ namespace iSBiblio.Pages.Autentication
     
     public class connexionModel : PageModel
     {
-        public string Message { get; set; }
         public bool error;
         public bool isDevelopmentMode = false;
         IConfiguration configuration;
+
         public connexionModel(IConfiguration configuration, IWebHostEnvironment env)
         {
 
@@ -46,7 +46,21 @@ namespace iSBiblio.Pages.Autentication
            
             return Page();
         }
-
+        private string GetUserRole(string email, SqlConnection connection)
+        {
+            // Implémentez une méthode pour récupérer le rôle de l'utilisateur à partir de la base de données
+            string role = "User";  // Par défaut
+            using (var command = new SqlCommand("SELECT Role FROM Utilisateurs WHERE Email = @Email", connection))
+            {
+                command.Parameters.Add(new SqlParameter("@Email", email));
+                var result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    role = result.ToString();
+                }
+            }
+            return role;
+        }
         public async Task<IActionResult> OnPostAsync(string email, string password, string ReturnUrl)
         {
             string con_str = "Server=isorgho;Database=Bibliotheque;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True";
@@ -56,13 +70,13 @@ namespace iSBiblio.Pages.Autentication
                 connection.Open();
                 using (var command = new SqlCommand("AuthentifierUtilisateur", connection))
                 {
-                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add(new SqlParameter("@Email", email));
                     command.Parameters.Add(new SqlParameter("@MotDePasse", password));
 
-                    var resultatParam = new SqlParameter("@Resultat", System.Data.SqlDbType.Bit)
+                    var resultatParam = new SqlParameter("@Resultat", SqlDbType.Bit)
                     {
-                        Direction = System.Data.ParameterDirection.Output
+                        Direction = ParameterDirection.Output
                     };
                     command.Parameters.Add(resultatParam);
                     command.ExecuteNonQuery();
@@ -71,21 +85,29 @@ namespace iSBiblio.Pages.Autentication
                     if (resultat)
                     {
                         error = false;
+                        string userRole = GetUserRole(email, connection); 
+
                         var claims = new List<Claim>
                         {
-                             new Claim(ClaimTypes.Name, email)
+                            new Claim(ClaimTypes.Name, email),
+                            new Claim(ClaimTypes.Role, userRole) 
                         };
-                            var claimsIdentity = new ClaimsIdentity(claims, "Login");
+                        var claimsIdentity = new ClaimsIdentity(claims, "Login");
                             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new
                             ClaimsPrincipal(claimsIdentity));
-                            //Ca conduit vers la page où l'autorisation a été demandée
-                            return Redirect(ReturnUrl == null ? "~/MenuLivres" : ReturnUrl);
-                       
+                        if (userRole == "Admin")
+                        {
+                            return Redirect(ReturnUrl ?? "~/Admin/Index");
+                        }
+                        else
+                        {
+                            return Redirect(ReturnUrl ?? "~/MenuLivres");
+                        }
+
                     }
                     else
                     {
                         error = true;
-                        Message = "Email ou mot de passe incorrect.";
                         return Page();
                     }
                 }

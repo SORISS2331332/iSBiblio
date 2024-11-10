@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace iSBiblio.Pages
 {
-    [Authorize]
+    [Authorize(Roles = "User")]
     public class EmpruntModel : PageModel
     {
 

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace iSBiblio.Pages
@@ -20,11 +21,21 @@ namespace iSBiblio.Pages
             _context = context;
         }
         public IList<LivresDisponible> Livres { get; set; }
-        public async Task  OnGetAsync()
+
+
+        public async Task  OnGetAsync(string name)
         {
             
             IsAuthenticated = User.Identity.IsAuthenticated;
-            Livres = await _context.LivresDisponibles.ToListAsync();
+            if(name == null)
+            {
+                Livres = await _context.LivresDisponibles.ToListAsync(); //Afficher toutes les catégories de livres
+            }
+            else
+            {
+                Livres = await _context.LivresDisponibles.Where(livre=>livre.Genre == name).ToListAsync(); //Afficher les livres par catégorie passé en param
+            }
+            
         }
     }
 }

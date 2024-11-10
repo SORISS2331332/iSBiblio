@@ -36,7 +36,10 @@
                     @if (Context.User.Identity.IsAuthenticated)
                     {
                         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
-                            <a class="nav-link text-white btn btn-outline-danger" asp-area="" asp-page-handler="Logout" asp-page="/Admin/ConnexionAdmin">Deconnexion</a>
+                            <a class="nav-link text-white btn btn-danger" asp-area="" asp-page-handler="Logout" asp-page="/Authentication/Connexion">Deconnexion</a>
+                        </div>
+                        <div class="nav-item">
+                            <a class="navbar-brand user" asp-area="" asp-page="/Profil"><img src="~/img/user.png" alt="Logo" /></a>
                         </div>
                     }
                 </div>

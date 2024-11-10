@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace iSBiblio.Pages
 {
-    public class ContactModel : PageModel
+    public class CategorieModel : PageModel
     {
         public void OnGet()
         {

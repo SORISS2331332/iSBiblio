@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace iSBiblio.Pages.Admin
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
         private readonly BibliothequeContext _context;

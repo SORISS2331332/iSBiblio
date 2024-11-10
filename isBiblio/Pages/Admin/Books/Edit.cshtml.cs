@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using iSBiblio.Data;
 using iSBiblio.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace iSBiblio.Pages.Admin.Books
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
         private readonly iSBiblio.Data.BibliothequeContext _context;

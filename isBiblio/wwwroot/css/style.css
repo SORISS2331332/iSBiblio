@@ -10,7 +10,7 @@
     font-family: Arial;
     margin: 0;
     color: white;
-
+    font-family: Arial, sans-serif;
 }
 
 
@@ -289,8 +289,95 @@ main {
     .adminForm tr th{
         font-size: 20px;
     }
-    @media (max-width: 480px) {
-        body {
+
+/*Categorie*/
+
+.category-header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}
+
+    .category-header h1 {
+        margin: 0;
+        background-color: #333;
+    }
+
+/* Section Catégories */
+.categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 2rem;
+    margin-bottom:50px;
+    margin: 0 50px 50px 50px;
+}
+
+.category {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+    .category:hover {
+        transform: translateY(-10px);
+    }
+
+    .category img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+.category-content {
+    padding: 15px;
+}
+
+.category h3 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #333;
+    background-color: #1e90ff;
+    padding: 5px;
+    width: 50%;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.category p {
+    color: #777;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+#all{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-color:transparent;
+    height:100%;
+}
+#all h3 {
+    background-color: green;
+    color: white;
+    margin-left:20px;
+}
+#all .category-content{
+    display: flex;
+    justify-content:center;
+}
+
+#all .category-content img {
+    width:100px;
+    height:80px;
+}
+
+@media (max-width: 480px) {
+    body {
         width: 100%;
     }
     .book-list{

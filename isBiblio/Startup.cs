@@ -33,6 +33,12 @@ namespace isBiblio
                            {
                                options.LoginPath = "/Authentication/connexion";
                            });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("UserOnly", policy => policy.RequireRole("User"));
+            });
+           
             services.AddDbContext<BibliothequeContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddRazorPages();
