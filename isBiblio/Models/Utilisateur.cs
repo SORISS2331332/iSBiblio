@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace iSBiblio.Models;
 
-[Index("Email", Name = "UQ__Utilisat__A9D105348408A5CA", IsUnique = true)]
+[Index("Email", Name = "UQ__Utilisat__A9D105347C273403", IsUnique = true)]
 public partial class Utilisateur
 {
     [Key]
@@ -31,11 +31,13 @@ public partial class Utilisateur
     [Required]
     [MaxLength(255)]
     public byte[] MotDePasse { get; set; }
-    public string Role { get; set; }
 
     public DateOnly? DateInscription { get; set; }
 
     public Guid? Sel { get; set; }
+
+    [StringLength(50)]
+    public string Role { get; set; }
 
     [InverseProperty("Utilisateur")]
     public virtual ICollection<Emprunt> Emprunts { get; set; } = new List<Emprunt>();

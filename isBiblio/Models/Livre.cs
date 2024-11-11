@@ -22,7 +22,7 @@ public partial class Livre
     [Column("AuteurID")]
     public int AuteurId { get; set; }
 
-    public int? AnneePublication { get; set; }
+    public DateOnly? AnneePublication { get; set; }
 
     [StringLength(100)]
     public string Genre { get; set; }

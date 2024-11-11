@@ -1,0 +1,51 @@
+﻿@page
+@using iSBiblio.Models
+@model iSBiblio.Pages.RechercherModel
+
+
+@{
+    ViewData["Title"] = "Resultats";
+}
+
+<h2 class="title">Resultats de votre recherche</h2>
+
+<section class="book-list">
+
+        @if (Model.Resultats != null && Model.Resultats.Any())
+        {
+            int nb = 1;
+            @foreach (var item in Model.Resultats )
+            {
+                if(nb > 4)
+                {
+                    nb = 1;
+                }
+                var lien = "/img/livre" + nb + ".jpg";
+                nb++;
+                
+                <article class="book">
+                    <img src=@lien alt="Couverture de Livre">
+                    <div class="book-info">
+                        <h2>@item.Titre</h2>
+                    <p>  <span><i class="fas fa-user"></i>  @item.Auteur.Prenom @item.Auteur.Nom </span></p>
+                        <p><span><i class="fas fa-book"></i>   @item.Genre</span>   </p>
+                    </div>
+                    <div class="opt">
+                        <p><a class="btn btn-outline-success" asp-page="#">Extrait</a></p>
+                        @if (HttpContext.User.Identity.IsAuthenticated)
+                        {
+                        
+                            <p><a class="btn btn-outline-success" asp-page="Emprunter" asp-route-Id="@item.LivreId">Emprunter</a></p>
+
+                        }
+                        
+                    </div>
+                </article>
+            }
+        }
+        else
+        {
+            <h2 class="text-white ">Aucun résultat trouvé.</h2>
+        }
+   
+</section>

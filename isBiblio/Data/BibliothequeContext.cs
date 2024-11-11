@@ -30,26 +30,19 @@ public partial class BibliothequeContext : DbContext
 
     public virtual DbSet<VueEmpruntsUser> VueEmpruntsUsers { get; set; }
 
-    public virtual DbSet<VueLivresDisponible> VueLivresDisponibles { get; set; }
-
-    public virtual DbSet<VueUtilisateursAvecLivre> VueUtilisateursAvecLivres { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Auteur>(entity =>
         {
-            entity.HasKey(e => e.AuteurId).HasName("PK__Auteurs__757A49A29F63A9D3");
+            entity.HasKey(e => e.AuteurId).HasName("PK__Auteurs__757A49A25CF39763");
         });
 
         modelBuilder.Entity<Emprunt>(entity =>
         {
-            entity.HasKey(e => e.EmpruntId).HasName("PK__Emprunts__629ED277945F6F1E");
+            entity.HasKey(e => e.EmpruntId).HasName("PK__Emprunts__629ED277F284192D");
 
-            entity.ToTable(tb =>
-                {
-                    tb.HasTrigger("trg_MettreAJourRetourLivre");
-                    tb.HasTrigger("trg_VerifierDisponibiliteLivre");
-                });
+            entity.ToTable(tb => tb.HasTrigger("trg_MettreAJourRetourLivre"));
 
             entity.Property(e => e.EstRendu).HasDefaultValue(false);
 
@@ -60,7 +53,7 @@ public partial class BibliothequeContext : DbContext
 
         modelBuilder.Entity<Livre>(entity =>
         {
-            entity.HasKey(e => e.LivreId).HasName("PK__Livres__562AE7E7D94427E0");
+            entity.HasKey(e => e.LivreId).HasName("PK__Livres__562AE7E762EED8A9");
 
             entity.Property(e => e.Disponibilite).HasDefaultValue(true);
             entity.Property(e => e.LienImage).HasDefaultValue("img/couverture.png");
@@ -77,7 +70,7 @@ public partial class BibliothequeContext : DbContext
 
         modelBuilder.Entity<Utilisateur>(entity =>
         {
-            entity.HasKey(e => e.UtilisateurId).HasName("PK__Utilisat__6CB6AE1F4151F8DF");
+            entity.HasKey(e => e.UtilisateurId).HasName("PK__Utilisat__6CB6AE1F1F28E0B9");
 
             entity.Property(e => e.DateInscription).HasDefaultValueSql("(getdate())");
         });
@@ -89,17 +82,7 @@ public partial class BibliothequeContext : DbContext
 
         modelBuilder.Entity<VueEmpruntsUser>(entity =>
         {
-            entity.ToView("VueEmpruntsUser");
-        });
-
-        modelBuilder.Entity<VueLivresDisponible>(entity =>
-        {
-            entity.ToView("VueLivresDisponibles");
-        });
-
-        modelBuilder.Entity<VueUtilisateursAvecLivre>(entity =>
-        {
-            entity.ToView("VueUtilisateursAvecLivres");
+            entity.ToView("VueEmpruntsUsers");
         });
 
         OnModelCreatingPartial(modelBuilder);

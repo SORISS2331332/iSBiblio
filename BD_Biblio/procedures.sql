@@ -100,7 +100,7 @@ CREATE PROCEDURE AjouterLivre
     @Titre NVARCHAR(255),
     @LienImage NVARCHAR(255),
     @AuteurId INT,
-    @AnneePublication INT,
+    @AnneePublication DATE,
     @Genre NVARCHAR(100)
 AS
 BEGIN

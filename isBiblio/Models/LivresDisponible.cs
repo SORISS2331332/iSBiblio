@@ -19,7 +19,7 @@ public partial class LivresDisponible
     [StringLength(100)]
     public string Genre { get; set; }
 
-    public int? AnneePublication { get; set; }
+    public DateOnly? AnneePublication { get; set; }
 
     [Required]
     [StringLength(100)]

@@ -36,7 +36,7 @@ CREATE TABLE Livres (
     Titre NVARCHAR(255) NOT NULL,
     LienImage NVARCHAR(255) DEFAULT 'img/couverture.png',
     AuteurID INT NOT NULL  FOREIGN KEY REFERENCES Auteurs(AuteurID),
-    AnneePublication INT,
+    AnneePublication DATE,
     Genre NVARCHAR(100),
     Disponibilite BIT DEFAULT 1
 );

@@ -89,6 +89,12 @@ body.homePage {
     flex-direction: column;
 }
 
+#Seach{
+    display:flex;
+    flex-direction: row;
+    width:100%;
+}
+
 .centered {
     display: flex;
     flex-direction: column;

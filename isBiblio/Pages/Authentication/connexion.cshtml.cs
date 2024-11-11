@@ -41,7 +41,7 @@ namespace iSBiblio.Pages.Autentication
         {
             if (HttpContext.User.Identity.IsAuthenticated)
             {
-                return Redirect("~/MenuLivres");
+                return Redirect("~/categorie");
             }
            
             return Page();
@@ -63,7 +63,7 @@ namespace iSBiblio.Pages.Autentication
         }
         public async Task<IActionResult> OnPostAsync(string email, string password, string ReturnUrl)
         {
-            string con_str = "Server=isorgho;Database=Bibliotheque;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True";
+            string con_str = configuration.GetConnectionString("DefaultConnection");
             
             using (var connection = new SqlConnection(con_str))
             {
@@ -101,7 +101,7 @@ namespace iSBiblio.Pages.Autentication
                         }
                         else
                         {
-                            return Redirect(ReturnUrl ?? "~/MenuLivres");
+                            return Redirect(ReturnUrl ?? "~/categorie");
                         }
 
                     }

@@ -32,8 +32,9 @@ namespace iSBiblio.Pages
         public Emprunt Emprunt { get; set; }
         public Utilisateur utilisateur {  get; set; }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(int id)
         {
+            LivreId = id;
             var userEmail = User.FindFirstValue(ClaimTypes.Name);
             utilisateur = _context.Utilisateurs.FirstOrDefault(u => u.Email == userEmail);
 
