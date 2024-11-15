@@ -7,80 +7,84 @@
 }
 
 
-   
-        
+
+
+<div class="Catalog">
     <div class="category-header">
-        <h1>Explorez Nos Catégories de Livres</h1>
+        <h2>Explorez Notre Catalogue</h2>
     </div>
-        <section class="categories">
-            <div  id="cat-all">
-               <div class="category" id="all">
-                    <a asp-page="MenuLivres">
-                        <div class="category-content">
-                            <img src="~/img/all.jpeg" alt="Toute categorie">
-                            <h3>Toutes les catégories</h3>
-                        </div>
-                    </a>
+
+    <section class="categories">
+
+        <div id="cat-all">
+            <div class="category" id="all">
+                <a asp-page="MenuLivres">
+                    <div class="category-content">
+                        <img src="~/img/all.jpeg" alt="Toute categorie">
+                        <h3>Toutes les catégories</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <a href="@Url.Page("/MenuLivres", new {name = "fiction"})">
+            <div class="category">
+                <img src="~/img/fiction.jpeg" alt="Fiction">
+                <div class="category-content">
+                    <h3>Fiction</h3>
+                    <p>Explorez une large sélection de livres de fiction, des classiques aux nouvelles sorties.</p>
                 </div>
             </div>
-            <a href="@Url.Page("/MenuLivres", new {name = "fiction"})">
-               <div class="category">
-                     <img src="~/img/fiction.jpeg" alt="Fiction">
-                    <div class="category-content">
-                        <h3>Fiction</h3>
-                        <p>Explorez une large sélection de livres de fiction, des classiques aux nouvelles sorties.</p>
-                    </div>
-                </div>
-            </a>
+        </a>
 
         <a href="@Url.Page("/MenuLivres", new {name = "Science"})">
-                <div class="category">
-                    <img src="~/img/science.jpeg" alt="Science">
-                    <div class="category-content">
-                        <h3>Science</h3>
-                        <p>Découvrez des ouvrages fascinants sur la science, la biologie, la physique et bien plus encore.</p>
-                    </div>
+            <div class="category">
+                <img src="~/img/science.jpeg" alt="Science">
+                <div class="category-content">
+                    <h3>Science</h3>
+                    <p>Découvrez des ouvrages fascinants sur la science, la biologie, la physique et bien plus encore.</p>
                 </div>
-            </a>
+            </div>
+        </a>
 
 
         <a href="@Url.Page("/MenuLivres", new {name = "histoire"})">
-                <div class="category">
-                    <img src="~/img/histoire.jpeg" alt="Histoire">
-                    <div class="category-content">
-                        <h3>Histoire</h3>
-                        <p>Plongez dans l'histoire du monde à travers des récits captivants et des analyses approfondies.</p>
-                    </div>
+            <div class="category">
+                <img src="~/img/histoire.jpeg" alt="Histoire">
+                <div class="category-content">
+                    <h3>Histoire</h3>
+                    <p>Plongez dans l'histoire du monde à travers des récits captivants et des analyses approfondies.</p>
                 </div>
-            </a>
+            </div>
+        </a>
 
         <a href="@Url.Page("/MenuLivres", new {name = "Philosophie"})">
-                <div class="category">
-                    <img src="~/img/philosophie.jpeg" alt="Philosophie">
-                    <div class="category-content">
-                        <h3>Philosophie</h3>
-                        <p>Réfléchissez sur les grandes questions de l'existence, de l'éthique et de la pensée humaine.</p>
-                    </div>
+            <div class="category">
+                <img src="~/img/philosophie.jpeg" alt="Philosophie">
+                <div class="category-content">
+                    <h3>Philosophie</h3>
+                    <p>Réfléchissez sur les grandes questions de l'existence, de l'éthique et de la pensée humaine.</p>
                 </div>
-            </a>
+            </div>
+        </a>
 
         <a href="@Url.Page("/MenuLivres", new {name = "Art"})">
-                <div class="category">
-                    <img src="~/img/art.jpeg" alt="Art">
-                    <div class="category-content">
-                        <h3>Art</h3>
-                        <p>Un voyage dans l'univers de l'art à travers des livres d'art, des biographies et des critiques.</p>
-                    </div>
+            <div class="category">
+                <img src="~/img/art.jpeg" alt="Art">
+                <div class="category-content">
+                    <h3>Art</h3>
+                    <p>Un voyage dans l'univers de l'art à travers des livres d'art, des biographies et des critiques.</p>
                 </div>
-           </a>
+            </div>
+        </a>
 
         <a href="@Url.Page("/MenuLivres", new {name = "Voyage"})">
-                <div class="category">
-                    <img src="~/img/voyage.jpeg" alt="Voyage">
-                    <div class="category-content">
-                        <h3>Voyage</h3>
-                        <p>Explorez des récits de voyage, des guides pratiques et des histoires inspirantes sur le monde.</p>
-                    </div>
+            <div class="category">
+                <img src="~/img/voyage.jpeg" alt="Voyage">
+                <div class="category-content">
+                    <h3>Voyage</h3>
+                    <p>Explorez des récits de voyage, des guides pratiques et des histoires inspirantes sur le monde.</p>
                 </div>
-            </a>
-        </section>
+            </div>
+        </a>
+    </section>
+</div>

@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System;
 using System.Data;
+using Microsoft.Extensions.Configuration;
 
 namespace iSBiblio.Pages.Autentication
 {
@@ -23,10 +24,11 @@ namespace iSBiblio.Pages.Autentication
         public bool Error { get; set; } = false;
         public string Message { get; set; }
         private readonly BibliothequeContext _context;
-
-        public InscriptionModel(BibliothequeContext context)
+        private readonly IConfiguration configuration;
+        public InscriptionModel(BibliothequeContext context, IConfiguration configuration)
         {
             _context = context;
+            this.configuration = configuration;
         }
 
         [BindProperty]
@@ -42,8 +44,8 @@ namespace iSBiblio.Pages.Autentication
 
         public IActionResult OnPost()
         {
-           
-            string con_str = "Server=isorgho;Database=Bibliotheque;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True";
+
+            string con_str = configuration.GetConnectionString("DefaultConnection");
             try
             {
                 using (var connection = new SqlConnection(con_str))

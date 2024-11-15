@@ -6,7 +6,7 @@
 	margin-top: 30px;
 	margin-bottom: 30px;
 	height:100%;
-	width: 80%;
+	width: 50%;
 	max-width: 100%;
 	border-radius: 10px;
 	box-shadow: 0 8px 24px rgba(0, 32, 63, .45), 0 8px 8px rgba(0, 32, 63, .45);
@@ -128,7 +128,7 @@ main{
 
 @media (max-width: 767px) {
 	.R-container {
-		flex-direction: column; 
+		flex-direction: column;
 	}
 
 	.R-overlay-contain {
@@ -136,6 +136,7 @@ main{
 	}
 	#adapt {
 		display: block;
+		background-color: red;
 	}
 	.form-contain {
 		border-radius: 8px;
@@ -156,6 +157,7 @@ main{
 	}
 	#adapt{
 		display: block;
+		background-color:red;
 	}
 	.R-container .R-overlay-contain {
 		display: none;

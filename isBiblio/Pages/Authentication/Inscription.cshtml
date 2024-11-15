@@ -13,6 +13,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - iS Biblio</title>
+    <link rel="icon" href="~/img/LogoH.png" type="image/png" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" />
@@ -42,7 +43,7 @@
                     </ul>
                 </div>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
-                     <a id="con" class="nav-link text-white border-2 btn btn-outline-success" asp-area="" asp-page="Authentication/connexion">Se connecter</a>
+                     <a id="con" class="nav-link text-white border-2 btn btn-outline-success" asp-area="" asp-page="/Authentication/connexion">Se connecter</a>
                         
                 </div>
             </div>
@@ -70,14 +71,15 @@
 
 
                     <input asp-for="MotDePasse" id="motdepasse" placeholder="Mot de passe" type="password" class="form-control" type="password" required/>
+                    <span asp-validation-for="MotDePasse" class="text-danger"></span>
                     <button class="button" type="submit">Valider</button>
-                    <div id="adapt" class="button"><a class=" ghost" id="signUp" asp-area="" asp-page="/Authentication/connexion">Se Connecter</a></div>
+                    <a id="adapt" class="button"  asp-page="/Authentication/connexion">Se Connecter</a>
                 </form>
             </div>
             <div class="R-overlay-contain">
                 <img id="form-img" src="~/img/Well.png" alt="IMG">
                 <p>Avez vous déjà de compte ?</p>
-                <div class="button"><a class=" ghost" id="signUp" asp-area="" asp-page="/Authentication/connexion">Se connecter</a></div>
+                <a class="button "  asp-page="/Authentication/connexion">Se connecter</a>
             </div>
         </div>
     </main>
@@ -87,7 +89,9 @@
             &copy; 2024 - iS Biblio  Tous droits réservés
         </div>
     </footer>
-
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

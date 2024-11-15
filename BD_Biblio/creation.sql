@@ -57,5 +57,11 @@ GO
 
 
 
+CREATE TABLE Essais
+(
+    UserId INT,
+    DateEssai DATETIME,
+    EtatConnexion BIT
+);
 
 

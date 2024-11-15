@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,12 @@ namespace iSBiblio.Pages
     public class EmprunterModel : PageModel
     {
         private readonly BibliothequeContext _context;
+        private readonly IConfiguration _configuration;
 
-        public EmprunterModel(BibliothequeContext context)
+        public EmprunterModel(BibliothequeContext context,IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         [BindProperty(SupportsGet = true)] // Permet de lier l'ID lors d'une requête GET
@@ -39,7 +42,7 @@ namespace iSBiblio.Pages
             utilisateur = _context.Utilisateurs.FirstOrDefault(u => u.Email == userEmail);
 
 
-            string con_str = "Server=isorgho;Database=Bibliotheque;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True";
+            string con_str = _configuration.GetConnectionString("DefaultConnection");
 
             using (var connection = new SqlConnection(con_str))
             {

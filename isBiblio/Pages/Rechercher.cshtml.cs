@@ -35,10 +35,19 @@ namespace iSBiblio.Pages
             TextSaisi = textSaisi;
             if (!string.IsNullOrEmpty(TextSaisi))
             {
-                Resultats = _context.Livres.Where(b => (b.Titre.Contains(TextSaisi) || b.Genre.Contains(TextSaisi) || b.Auteur.Prenom.Contains(TextSaisi) || b.Auteur.Nom.Contains(TextSaisi))).Include(b => b.Auteur).ToList();
+                var textSaisiLower = TextSaisi.ToLower();
+                Resultats = _context.Livres
+                    .Where(b => (b.Titre.ToLower().Contains(TextSaisi.ToLower()) ||
+                                 b.Genre.ToLower().Contains(TextSaisi.ToLower()) ||
+                                 b.Auteur.Prenom.ToLower().Contains(TextSaisi.ToLower()) ||
+                                 b.Auteur.Nom.ToLower().Contains(TextSaisi.ToLower())))
+                    .Include(b => b.Auteur)
+                    .ToList();
+
                 
+
             }
-           
+
         }
     }
 }

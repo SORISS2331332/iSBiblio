@@ -15,28 +15,39 @@ using Microsoft.Data.SqlClient;
 using System.Data;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using Microsoft.Identity.Client;
+using System.Data.Common;
+using System;
+using Microsoft.Extensions.Logging;
+using Dapper;
 
 namespace iSBiblio.Pages.Autentication
 {
     
     public class connexionModel : PageModel
     {
-        public bool error;
-        public bool isDevelopmentMode = false;
-        IConfiguration configuration;
-
-        public connexionModel(IConfiguration configuration, IWebHostEnvironment env)
+        private readonly IConfiguration _configuration;
+        private readonly IDbConnection _dbConnection;
+        public string Message {  get; set; }
+        public connexionModel(IConfiguration configuration)
         {
-
-            this.configuration = configuration;
-
-
-            if (env.IsDevelopment())
-            {
-                isDevelopmentMode = true;
-            }
-
+            _configuration = configuration;
+            _dbConnection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
         }
+        [BindProperty]
+        public InputModel Input { get; set; }
+
+        public string ReturnUrl { get; set; }
+        public class InputModel
+        {
+            [Required]
+            [EmailAddress]
+            public string Email { get; set; }
+
+            [Required]
+            [DataType(DataType.Password)]
+            public string Password { get; set; }
+        }
+      
         public IActionResult OnGet()
         {
             if (HttpContext.User.Identity.IsAuthenticated)
@@ -48,7 +59,7 @@ namespace iSBiblio.Pages.Autentication
         }
         private string GetUserRole(string email, SqlConnection connection)
         {
-            // Implémentez une méthode pour récupérer le rôle de l'utilisateur à partir de la base de données
+            
             string role = "User";  // Par défaut
             using (var command = new SqlCommand("SELECT Role FROM Utilisateurs WHERE Email = @Email", connection))
             {
@@ -61,60 +72,55 @@ namespace iSBiblio.Pages.Autentication
             }
             return role;
         }
-        public async Task<IActionResult> OnPostAsync(string email, string password, string ReturnUrl)
+        public async Task<IActionResult> OnPostAsync(string ReturnUrl)
         {
-            string con_str = configuration.GetConnectionString("DefaultConnection");
-            
-            using (var connection = new SqlConnection(con_str))
+            ReturnUrl ??= Url.Content("~/");
+            try
             {
+                var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+
                 connection.Open();
-                using (var command = new SqlCommand("AuthentifierUtilisateur", connection))
+                // Appel à la procédure stockée pour la connexion
+                var parameters = new { Email = Input.Email, Password = Input.Password };
+                var result = await _dbConnection.QuerySingleOrDefaultAsync<string>(
+                    "dbo.ConnecterUtilisateur", parameters, commandType: CommandType.StoredProcedure);
+
+                if (result == "Succès")
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add(new SqlParameter("@Email", email));
-                    command.Parameters.Add(new SqlParameter("@MotDePasse", password));
+                    string userRole = GetUserRole(Input.Email, connection);
 
-                    var resultatParam = new SqlParameter("@Resultat", SqlDbType.Bit)
-                    {
-                        Direction = ParameterDirection.Output
-                    };
-                    command.Parameters.Add(resultatParam);
-                    command.ExecuteNonQuery();
-
-                    bool resultat = (bool)resultatParam.Value;
-                    if (resultat)
-                    {
-                        error = false;
-                        string userRole = GetUserRole(email, connection); 
-
-                        var claims = new List<Claim>
+                    var claims = new List<Claim>
                         {
-                            new Claim(ClaimTypes.Name, email),
-                            new Claim(ClaimTypes.Role, userRole) 
+                            new Claim(ClaimTypes.Name, Input.Email),
+                            new Claim(ClaimTypes.Role, userRole)
                         };
-                        var claimsIdentity = new ClaimsIdentity(claims, "Login");
-                            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new
-                            ClaimsPrincipal(claimsIdentity));
-                        if (userRole == "Admin")
-                        {
-                            return Redirect(ReturnUrl ?? "~/Admin/Index");
-                        }
-                        else
-                        {
-                            return Redirect(ReturnUrl ?? "~/categorie");
-                        }
-
-                    }
-                    else
+                    var claimsIdentity = new ClaimsIdentity(claims, "Login");
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new
+                    ClaimsPrincipal(claimsIdentity));
+                    if (userRole == "Admin")
                     {
-                        error = true;
-                        return Page();
+                        return Redirect("~/Admin/Index");
                     }
+
+                    return Redirect("/Index");
                 }
+                
+                Message = result;
+                return Page();
+                
+
+
+            }catch(Exception ex)
+            {
+                Message = ex.Message;
+                return Page();
             }
 
-
+            
         }
+       
+
+        
 
         public async Task<IActionResult> OnGetLogout()
         {
