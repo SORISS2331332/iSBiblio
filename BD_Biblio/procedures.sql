@@ -186,7 +186,8 @@ BEGIN
     SELECT 
         @CompteVerrouille = CASE WHEN COUNT(*) >= 5 THEN 1 ELSE 0 END,
         @PremiereTentativeEchouee = MIN(DateEssai), 
-        @DerniereTentativeEchouee = MAX(DateEssai)    
+        @DerniereTentativeEchouee = MAX(DateEssai) 
+    From Essais   
     WHERE UserId = @IdentifiantUtilisateur
     AND EtatConnexion = 0
     AND DateEssai > DATEADD(MINUTE, -3, GETDATE());  
