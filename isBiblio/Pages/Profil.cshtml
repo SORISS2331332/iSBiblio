@@ -14,22 +14,17 @@
 
 
 <h2 class="title">Profil</h2>
+<!--Affichage des informations de l'utilisateur-->
 
 <section class="profil">
     <div class="profile-info">
-        <span class="label">Prénom :</span> @Model.UtilisateurConnected.Prenom
+        <i class="fas fa-user mr-2"></i> @Model.UtilisateurConnected.Prenom @Model.UtilisateurConnected.Nom
     </div>
     <div class="profile-info">
-        <span class="label">Nom  :</span> @Model.UtilisateurConnected.Nom
+        <i class="fas fa-envelope mr-2"></i> @Model.UtilisateurConnected.Email
     </div>
     <div class="profile-info">
-        <span class="label">Email :</span> @Model.UtilisateurConnected.Email
-    </div>
-    <div class="profile-info">
-        <span class="label">Adresse :</span> @Model.UtilisateurConnected.Adresse
-    </div>
-    <div class="profile-info">
-        <span class="label">Mot de Passe :</span> **********
+        <i class="fas fa-map-marker-alt mr-2"></i> @Model.UtilisateurConnected.Adresse
     </div>
 
     <div>

@@ -33,7 +33,7 @@ namespace iSBiblio.Pages
             }
             else
             {
-                Livres = await _context.LivresDisponibles.Where(livre=>livre.Genre == name).ToListAsync(); //Afficher les livres par catégorie passé en param
+                Livres = await _context.LivresDisponibles.Where(livre=>livre.Genre == name).ToListAsync(); //Afficher les livres par catégorie passé en param dans categorie
             }
             
         }

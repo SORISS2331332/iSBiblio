@@ -12,7 +12,7 @@
     @foreach(var item in Model.Livres){
         if(nb > 4)
         {
-            nb = 1;
+            nb = 1;  //Utiliser 4 images seulement pour les livres(limiter le stockage)
         }
         var lien = "/img/livre" + nb + ".jpg";
         nb++;
@@ -28,7 +28,7 @@
                 <p><a class="btn btn-outline-success" asp-page="#">Extrait</a></p>
                 @if (Model.IsAuthenticated)
                 {
-                        
+                        //Seuls les utilisateurs connectés peuvent emprunter des livres
                     <p><a class="btn btn-outline-success" asp-page="Emprunter" asp-route-Id="@item.LivreId">Emprunter</a></p>
 
                 }

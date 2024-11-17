@@ -33,10 +33,14 @@ namespace iSBiblio.Pages.Autentication
             _configuration = configuration;
             _dbConnection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
         }
+
+
         [BindProperty]
         public InputModel Input { get; set; }
 
         public string ReturnUrl { get; set; }
+
+
         public class InputModel
         {
             [Required]
@@ -57,7 +61,7 @@ namespace iSBiblio.Pages.Autentication
            
             return Page();
         }
-        private string GetUserRole(string email, SqlConnection connection)
+        private string GetUserRole(string email, SqlConnection connection) //Fonction qui récupère le rôle de l'utilisateur dans la BD
         {
             
             string role = "User";  // Par défaut
@@ -77,6 +81,7 @@ namespace iSBiblio.Pages.Autentication
             ReturnUrl ??= Url.Content("~/");
             try
             {
+               
                 var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
                 connection.Open();
@@ -87,8 +92,10 @@ namespace iSBiblio.Pages.Autentication
 
                 if (result == "Succès")
                 {
+                    //Récupération du rôle
                     string userRole = GetUserRole(Input.Email, connection);
 
+                    //Authentification de l'utilisateur
                     var claims = new List<Claim>
                         {
                             new Claim(ClaimTypes.Name, Input.Email),
@@ -97,12 +104,13 @@ namespace iSBiblio.Pages.Autentication
                     var claimsIdentity = new ClaimsIdentity(claims, "Login");
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new
                     ClaimsPrincipal(claimsIdentity));
+
                     if (userRole == "Admin")
                     {
                         return Redirect("~/Admin/Index");
                     }
 
-                    return Redirect("/Index");
+                    return Redirect("~/categorie");
                 }
                 
                 Message = result;

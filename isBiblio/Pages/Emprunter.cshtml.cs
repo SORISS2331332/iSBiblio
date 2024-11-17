@@ -38,15 +38,17 @@ namespace iSBiblio.Pages
         public IActionResult OnGet(int id)
         {
             LivreId = id;
+            //Récupération des informations de l'utilisateur connecté
             var userEmail = User.FindFirstValue(ClaimTypes.Name);
             utilisateur = _context.Utilisateurs.FirstOrDefault(u => u.Email == userEmail);
 
-
+            //Connexion à la BD
             string con_str = _configuration.GetConnectionString("DefaultConnection");
 
             using (var connection = new SqlConnection(con_str))
             {
                 connection.Open();
+                //appel de la procédure stockée pour emprunt de livres
                 using (var command = new SqlCommand("EmprunterLivre", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -56,7 +58,7 @@ namespace iSBiblio.Pages
 
                     if (row > 0)
                     {
-                        TempData["Message"] = "Vous avez emprunté un livre avec succès !";
+                        TempData["Message"] = "Vous avez emprunté un livre avec succès !"; //Passage d'un message en get
                         return Redirect("/Emprunt");
 
                     }

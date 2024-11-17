@@ -32,7 +32,7 @@ namespace iSBiblio.Pages
             Message = TempData["Message"] as string; //recuperer un message par get
             if (userEmail != null)
             {
-
+                //Requête pour selectionner les emprunts en cours
                 userEmprunts = await _context.VueEmpruntsUsers.Where(e => e.Email == userEmail).ToListAsync();
                 
             }

@@ -6,7 +6,7 @@
 	margin-top: 30px;
 	margin-bottom: 30px;
 	height:100%;
-	width: 50%;
+	width: 70%;
 	max-width: 100%;
 	border-radius: 10px;
 	box-shadow: 0 8px 24px rgba(0, 32, 63, .45), 0 8px 8px rgba(0, 32, 63, .45);
@@ -28,14 +28,14 @@ main{
 	flex-direction: column;
 	padding: 50px 50px;
 	text-align: center;
-	
 }
+
 
 .R-container input, textarea {
 	border: 2px solid #1e90ff;
 	padding: 12px 15px;
 	margin: 8px 0;
-	width: 100%;
+	width:100%;
 }
 
 .R-container .button.ghost {
@@ -99,21 +99,21 @@ main{
 
 
 #form-img {
-	width: 200px;
-	height: 200px;
+	width: 150px;
+	height: 150px;
 	margin-bottom: 20px
 }
 
 
 .R-overlay-contain {
-	display: flex;
-	background: #1e90ff;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	text-align: center;
-	flex: 1;
-	width: 50%;
+    display: flex;
+    background: #1e90ff;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    flex: 1;
+    width: 50%;
 }
 
 .R-container p {
@@ -124,9 +124,13 @@ main{
 	color: white;
 }
 
+@media (min-width: 1025px){
+	.R-container{
+		width: 50%;
+	}
+}
 
-
-@media (max-width: 767px) {
+@media (max-width: 770px) {
 	.R-container {
 		flex-direction: column;
 	}

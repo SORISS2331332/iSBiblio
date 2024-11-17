@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="~/css/style.css" />
 </head>
 <body>
-    <header class="header">
+    <header id="layout" class="header">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3">
             <div class="container">
                 <div><a class="navbar-brand logo" asp-area="" asp-page="/Index"><img src="~/img/myLogo.png" alt="Logo" /></a></div>
@@ -47,7 +47,7 @@
                 </div>
                 @if (!Context.User.Identity.IsAuthenticated)
                 {
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <div id="a-conn" class="navbar-collapse collapse d-sm-inline-flex justify-content-end ">
                         <a id="con" class="nav-link text-white border-2 btn btn-outline-success" asp-area="" asp-page="Authentication/connexion">Se connecter</a>
                     </div>
                 }

@@ -14,9 +14,9 @@ namespace iSBiblio.Pages.Admin.Authors
     [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
-        private readonly iSBiblio.Data.BibliothequeContext _context;
+        private readonly BibliothequeContext _context;
 
-        public CreateModel(iSBiblio.Data.BibliothequeContext context)
+        public CreateModel(BibliothequeContext context)
         {
             _context = context;
         }

@@ -33,10 +33,11 @@ namespace iSBiblio.Pages
         public IActionResult OnGet(int id)
         {
             EmpruntID = id;
+            //récupération de l'emailde l'utilsater connecé puis le trouver dans la BD
             var userEmail = User.FindFirstValue(ClaimTypes.Name);
             utilisateur = _context.Utilisateurs.FirstOrDefault(u => u.Email == userEmail);
 
-
+            //Connextion à la BD pour l'exécution de la procédure stockée de retour de livre
             string con_str = configuration.GetConnectionString("DefaultConnection");
 
             using (var connection = new SqlConnection(con_str))
@@ -50,7 +51,7 @@ namespace iSBiblio.Pages
 
                     if (row > 0)
                     {
-                        TempData["Message"] = "Merci ! Vous avez retourné un livre avec succès !";
+                        TempData["Message"] = "Merci ! Vous avez retourné un livre avec succès !"; //Passage d'un message en Get pour notifier l'utilisateur
                         return Redirect("/Emprunt");
 
                     }

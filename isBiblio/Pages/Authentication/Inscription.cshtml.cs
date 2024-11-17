@@ -44,10 +44,11 @@ namespace iSBiblio.Pages.Autentication
 
         public IActionResult OnPost()
         {
-
+            //Connexion à la BD
             string con_str = configuration.GetConnectionString("DefaultConnection");
             try
             {
+                //exécution de la procédure stockée pour inscription de nouvel utilisateur
                 using (var connection = new SqlConnection(con_str))
                 {
                     connection.Open();

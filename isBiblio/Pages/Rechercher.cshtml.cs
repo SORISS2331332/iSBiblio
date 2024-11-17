@@ -35,6 +35,8 @@ namespace iSBiblio.Pages
             TextSaisi = textSaisi;
             if (!string.IsNullOrEmpty(TextSaisi))
             {
+               
+                //Effectuer une recherche insensible à la case
                 var textSaisiLower = TextSaisi.ToLower();
                 Resultats = _context.Livres
                     .Where(b => (b.Titre.ToLower().Contains(TextSaisi.ToLower()) ||

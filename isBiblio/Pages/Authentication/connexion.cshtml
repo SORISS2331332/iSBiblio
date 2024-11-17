@@ -6,7 +6,7 @@
 @{
     Layout = null;
 }
-
+<!--Utilisation spécifique d'un head pour la connexion et l'inscription-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="~/css/styleR.css" />
 </head>
 <body>
-    <header class="header">
+    <header id="header-connect" class="header">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3">
             <div class="container">
                 <div><a class="navbar-brand logo" asp-page="/Index"><img src="~/img/myLogo.png" alt="Logo" /></a></div>
@@ -33,7 +33,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-success"  asp-page="/Index">Accueil</a>
+                            <a class="nav-link btn btn-outline-success" asp-page="/Index">Accueil</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link  btn btn-outline-success" asp-page="/categorie">Catalogue</a>
@@ -44,17 +44,17 @@
                     </ul>
                 </div>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
-                     <a id="con" class="nav-link text-white border-2 btn btn-outline-success" asp-area="" asp-page="Authentication/connexion">Se connecter</a>
-                        
+                    <a id="con" class="nav-link text-white border-2 btn btn-outline-success" asp-area="" asp-page="Authentication/connexion">Se connecter</a>
+
                 </div>
             </div>
         </nav>
     </header>
-   
+
 
     <main>
         <div class="R-container" id="R-container">
-            
+
             <div class="form-contain login-contain">
                 <form method="post">
                     <h1>Connexion</h1>
@@ -64,16 +64,18 @@
                             @Model.Message
                         </div>
                     }
-                    <input asp-for="Input.Email" type="email" placeholder="Email"  required>
-                    <input asp-for="Input.Password" type="password" placeholder="Mot de passe"  required>
+
+                    <input asp-for="Input.Email" type="email" placeholder="Email" required>
+                    <input asp-for="Input.Password" type="password" placeholder="Mot de passe" required>
+
                     <button class="button" type="submit">Se connecter</button>
                     <a id="adapt" class="button" asp-area="" asp-page="/Authentication/Inscription">Créer un compte</a>
                 </form>
             </div>
             <div class="R-overlay-contain">
-                    <img id="form-img" src="~/img/Well.png" alt="IMG">
-                    <p>Vous n'avez pas de compte ?</p>
-                    <a class=" button" id="signUp" asp-area="" asp-page="/Authentication/Inscription">Créer un compte</a>
+                <img id="form-img" src="~/img/Well.png" alt="IMG">
+                <p>Vous n'avez pas de compte ?</p>
+                <a class=" button" id="signUp" asp-area="" asp-page="/Authentication/Inscription">Créer un compte</a>
             </div>
         </div>
     </main>

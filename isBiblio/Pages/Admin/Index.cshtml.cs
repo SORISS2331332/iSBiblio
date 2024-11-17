@@ -18,10 +18,10 @@ namespace iSBiblio.Pages.Admin
         {
             _context = context;
         }
-        public IList<VueEmpruntsActif> EmpruntsActifs { get; set; }
+        public IList<VueEmpruntsUser> EmpruntsActifs { get; set; }
         public async Task OnGetAsync()
         {
-            EmpruntsActifs = await _context.VueEmpruntsActifs.ToListAsync();
+            EmpruntsActifs = await _context.VueEmpruntsUsers.ToListAsync();
         }
     }
 }

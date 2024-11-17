@@ -28,7 +28,7 @@ namespace iSBiblio.Pages
       
         public async Task OnGetAsync()
         {
-
+            //Identity pour recuperer l'email de l'utilisateur connecté puis une requête pour récuperer toutes ses infos dans la BD
             UserEmail = User.FindFirstValue(ClaimTypes.Name);
             UtilisateurConnected = await _context.Utilisateurs
             .FirstOrDefaultAsync(u => u.Email == UserEmail);
