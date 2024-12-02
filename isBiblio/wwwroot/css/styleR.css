@@ -17,7 +17,7 @@ main{
 	align-items:stretch;
 }
 .form-contain {
-	flex: 1;
+	width: 60%;
 }
 
 .R-container form {
@@ -34,8 +34,15 @@ main{
 .R-container input, textarea {
 	border: 2px solid #1e90ff;
 	padding: 12px 15px;
-	margin: 8px 0;
 	width:100%;
+}
+
+.R-container .inputText {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	margin-bottom: 15px;
 }
 
 .R-container .button.ghost {
@@ -112,8 +119,7 @@ main{
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    flex: 1;
-    width: 50%;
+	width: 40%;
 }
 
 .R-container p {
@@ -126,7 +132,7 @@ main{
 
 @media (min-width: 1025px){
 	.R-container{
-		width: 50%;
+		width: 60%;
 	}
 }
 

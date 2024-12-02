@@ -48,45 +48,6 @@ GO
 
 
 
--- Procédure Stockée pour l'authentification d'un utilisateur
-IF OBJECT_ID('dbo.AuthentifierUtilisateur', 'P') IS NOT NULL
-BEGIN
-    DROP PROCEDURE dbo.AuthentifierUtilisateur;
-END
-GO
-CREATE PROCEDURE AuthentifierUtilisateur
-    @Email NVARCHAR(255),
-    @MotDePasse NVARCHAR(255), -- Mot de passe en clair
-    @Resultat BIT OUTPUT
-AS
-BEGIN
-    DECLARE @MotDePasseHache VARBINARY(255);
-    DECLARE @Sel UNIQUEIDENTIFIER;
-
-    -- Récupérer le sel et le mot de passe haché de l'utilisateur
-    SELECT @Sel = Sel, @MotDePasseHache = MotDePasse
-    FROM Utilisateurs
-    WHERE Email = @Email;
-
-    -- Vérifier si l'utilisateur existe
-    IF @MotDePasseHache IS NOT NULL
-    BEGIN
-        -- Hachage du mot de passe fourni avec le sel
-        IF @MotDePasseHache = HASHBYTES('SHA2_256', @MotDePasse + CAST(@Sel AS NVARCHAR(255)))
-        BEGIN
-            SET @Resultat = 1; -- Authentification réussie
-        END
-        ELSE
-        BEGIN
-            SET @Resultat = 0; -- Échec de l'authentification
-        END
-    END
-    ELSE
-    BEGIN
-        SET @Resultat = 0; -- Utilisateur non trouvé
-    END
-END;
-GO
 
 
 -- Procédure Stockée pour ajouter un livre
@@ -201,7 +162,6 @@ BEGIN
         -- Calculer le temps restant avant la fin du verrouillage
         SET @TempsRestant = DATEDIFF(MINUTE, GETDATE(), @TempsFinVerrouillage);
 
-        -- Si le temps restant est positif, l'utilisateur doit attendre
         IF @TempsRestant > 0
         BEGIN
             -- Retourner le message avec le temps restant avant une nouvelle tentative

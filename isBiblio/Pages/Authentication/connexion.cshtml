@@ -64,9 +64,16 @@
                             @Model.Message
                         </div>
                     }
-
-                    <input asp-for="Input.Email" type="email" placeholder="Email" required>
-                    <input asp-for="Input.Password" type="password" placeholder="Mot de passe" required>
+                    <div class="inputText mt-4">
+                        <label class="font-weight-bold">Courriel</label>
+                        <input asp-for="Input.Email" type="email" placeholder="example@example.com" required>
+                    </div>
+                    <div class="inputText">
+                        <label class="font-weight-bold">Mot de Passe</label>
+                        <input asp-for="Input.Password" type="password" required>
+                    </div>
+                    
+                    
 
                     <button class="button" type="submit">Se connecter</button>
                     <a id="adapt" class="button" asp-area="" asp-page="/Authentication/Inscription">Créer un compte</a>

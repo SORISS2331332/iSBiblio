@@ -10,9 +10,21 @@
         <div class="form-contain login-contain">
             <form method="post">
                 <h2 class="font-weight-bold">Contactez Nous !</h2>
-                <input type="text" placeholder="Votre Nom" name="text" required>
-                <input type="email" placeholder="Email" name="email" required>
-                <textarea rows="4" placeholder="Écrivez votre message ici..."></textarea>
+                 <div class="inputText mt-4">
+                    <label class="font-weight-bold">Nom</label>
+                     <input type="text"  name="text" required>
+                 </div>
+                 <div class="inputText">
+                    <label class="font-weight-bold">Courriel</label>
+                    <input type="email" placeholder="example@example.com" name="email" required>
+                 </div>
+                 <div class="inputText">
+                    <label class="font-weight-bold">Message</label>
+                    <textarea rows="4" placeholder="Écrivez votre message ici..."></textarea>
+                 </div>
+                
+                
+                
                 <button class="button" type="submit">Envoyer</button>
             </form>
         </div>
