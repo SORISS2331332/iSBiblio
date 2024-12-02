@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title >@ViewData["Title"] - iS Biblio</title>
+    <link rel="icon" href="~/img/LogoH.png" type="image/png" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/styleR.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
+<body>
+    <header id="layout" class="header">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3">
+            <div class="container">
+                <div><a class="navbar-brand logo" asp-area="" asp-page="/Index"><img src="~/img/myLogo.png" alt="Logo" /></a></div>
+                <button class="defile navbar-toggler " type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav mx-auto flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-success" asp-area="" asp-page="/Index">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  btn btn-outline-success" asp-area="" asp-page="/categorie">Catalogue</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-success" asp-area="" asp-page="/contact">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="container">
+                        <form asp-page="/Rechercher" method="get" class="d-flex">
+                            <!-- Icône de recherche dans le champ input -->
+                            <div class="input-group">
+                                
+                                <input class="form-control" type="search" placeholder="Rechercher" aria-label="Search" name="textSaisi">
+                            </div>
+                            <button class="btn btn-success ms-2" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                @if (!Context.User.Identity.IsAuthenticated)
+                {
+                    <div id="a-conn" class="navbar-collapse collapse d-sm-inline-flex justify-content-end ">
+                        <a id="con" class="nav-link text-white border-2 btn btn-outline-success" asp-area="" asp-page="Authentication/connexion">Se connecter</a>
+                    </div>
+                }
+                
+                @if (Context.User.Identity.IsAuthenticated)
+                {
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                        <ul class="navbar-nav ">
+                            <li class="nav-item">
+                                <a class="nav-link  btn btn-outline-success" asp-area="" asp-page="/Emprunt">Emprunts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white btn btn-danger" asp-area="" asp-page-handler="Logout" asp-page="/Authentication/connexion">Deconnexion</a>
+                            </li>
+                        </ul>
+                        <div class="nav-item">
+                            <a class="navbar-brand user" asp-area="" asp-page="/Profil"><img src="~/img/user.png" alt="Logo" /></a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer">
+        <div class="container">
+            &copy; 2024 - iS Biblio  Tous droits réservés 
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

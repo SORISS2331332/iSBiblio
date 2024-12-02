@@ -1,0 +1,59 @@
+﻿@page
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@model iSBiblio.Pages.Admin.Books.DeleteModel
+
+@{
+    Layout = "AdminLayout";
+    ViewData["Title"] = "Supprimer un Livre";
+}
+
+
+<h3 class="alert alert-danger">Etes-vous sûr de vouloir supprimer ?</h3>
+<div class="adminForm text-white">
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Livre.Titre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Livre.Titre)
+        </dd>
+        <dt class="col-sm-2">
+            Publication
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Livre.AnneePublication)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Livre.Genre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Livre.Genre)
+        </dd>
+        <dt class="col-sm-2">
+            Etat
+        </dt>
+        <dd class="col-sm-10">
+            @if ((bool)Model.Livre.Disponibilite)
+            {
+                <p>Disponible</p>
+            }
+            else
+            {
+                <p>Indisponible</p>
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Livre.Auteur)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Livre.Auteur.Nom)
+        </dd>
+    </dl>
+    
+    <form class="Retour" method="post">
+        <input type="hidden" asp-for="Livre.LivreId" />
+        <input type="submit" value="Supprimer" class="valider btn btn-danger" /> |
+        <a class="btn btn-primary " asp-page="./Index">Retour</a>
+    </form>
+</div>

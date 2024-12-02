@@ -1,0 +1,38 @@
+﻿@page
+@model iSBiblio.Pages.Admin.Authors.DeleteModel
+
+@{
+    Layout = "AdminLayout";
+    ViewData["Title"] = "Supprimer un auteur";
+}
+
+<h3 class="dossier alert alert-danger text-center " role="alert">Etes-vous sûr de vouloir supprimer ?</h3>
+<div class="adminForm text-white">
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Auteur.Nom)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Auteur.Nom)
+        </dd>
+        <dt class="col-sm-2">
+            Prénom
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Auteur.Prenom)
+        </dd>
+        <dt class="col-sm-2">
+            Naissance
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Auteur.DateNaissance)
+        </dd>
+    </dl>
+    
+    <form class="Retour" method="post">
+        <input type="hidden" asp-for="Auteur.AuteurId" />
+        <input type="submit" value="Supprimer" class="valider btn btn-danger" /> |
+        <a class="btn btn-primary text-white" asp-page="./Index">Retour</a>
+    </form>
+</div>

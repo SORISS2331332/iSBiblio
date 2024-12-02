@@ -1,0 +1,180 @@
+
+
+.R-container {
+	display: flex;
+	flex-direction: row;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	height:100%;
+	width: 70%;
+	max-width: 100%;
+	border-radius: 10px;
+	box-shadow: 0 8px 24px rgba(0, 32, 63, .45), 0 8px 8px rgba(0, 32, 63, .45);
+}
+main{
+	display:flex;
+	justify-content:center;
+	align-items:stretch;
+}
+.form-contain {
+	flex: 1;
+}
+
+.R-container form {
+	background-color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 50px 50px;
+	text-align: center;
+}
+
+
+.R-container input, textarea {
+	border: 2px solid #1e90ff;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width:100%;
+}
+
+.R-container .button.ghost {
+	background-color: transparent;
+}
+
+.R-container .button {
+	background-color: green;
+	color: white;
+	border: 1px solid #adf0d1;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 16px 32px;
+	margin-top: 24px;
+	letter-spacing: 1px;
+	border-radius: 50px;
+	border-color: rgba(0, 32, 63, .45);
+	transition: .2s ease-in;
+}
+	.R-container .button a {
+		font-size: 16px;
+		color: white;
+	}
+
+	.R-container .button:hover {
+		cursor: pointer;
+		transform: scale(1.1);
+		color: white;
+	}
+
+	.R-container .button:active {
+		transform: scale(.95);
+	}
+
+
+
+.R-container h1 {
+	margin: 0;
+	font-size: 24px;
+	background-color: #fff;
+	color: black;
+	font-weight: bolder;
+
+}
+
+.R-container span {
+	font-size: 14px;
+}
+
+.R-container a {
+	text-decoration: none;
+	font-size: 14px;
+	margin: 8px 0 16px;
+	color: #333;
+}
+
+
+#adapt{
+	display:none;
+}
+
+
+#form-img {
+	width: 150px;
+	height: 150px;
+	margin-bottom: 20px
+}
+
+
+.R-overlay-contain {
+    display: flex;
+    background: #1e90ff;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    flex: 1;
+    width: 50%;
+}
+
+.R-container p {
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 20px;
+	letter-spacing: .5px;
+	color: white;
+}
+
+@media (min-width: 1025px){
+	.R-container{
+		width: 50%;
+	}
+}
+
+@media (max-width: 770px) {
+	.R-container {
+		flex-direction: column;
+	}
+
+	.R-overlay-contain {
+		display: none; 
+	}
+	#adapt {
+		display: block;
+		background-color: red;
+	}
+	.form-contain {
+		border-radius: 8px;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	}
+}
+
+@media (max-width: 480px) {
+	body{
+		width:100%;
+	}
+	
+	.form-contain{
+		width:100%
+	}
+	.R-container{
+		width:100%;
+	}
+	#adapt{
+		display: block;
+		background-color:red;
+	}
+	.R-container .R-overlay-contain {
+		display: none;
+	}
+	h1 {
+		font-size: 1.5em; 
+	}
+
+	input {
+		padding: 8px;
+	}
+
+	.button {
+		padding: 8px; 
+	}
+}

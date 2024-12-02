@@ -1,0 +1,93 @@
+﻿@page
+@model iSBiblio.Pages.Autentication.connexionModel
+@{
+    ViewData["Title"] = "Connexion";
+}
+@{
+    Layout = null;
+}
+<!--Utilisation spécifique d'un head pour la connexion et l'inscription-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - iS Biblio</title>
+    <link rel="icon" href="~/img/LogoH.png" type="image/png" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/styleR.css" />
+</head>
+<body>
+    <header id="header-connect" class="header">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3">
+            <div class="container">
+                <div><a class="navbar-brand logo" asp-page="/Index"><img src="~/img/myLogo.png" alt="Logo" /></a></div>
+                <button class="defile navbar-toggler " type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-success" asp-page="/Index">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  btn btn-outline-success" asp-page="/categorie">Catalogue</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-success" asp-page="/contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <a id="con" class="nav-link text-white border-2 btn btn-outline-success" asp-area="" asp-page="Authentication/connexion">Se connecter</a>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+        <div class="R-container" id="R-container">
+
+            <div class="form-contain login-contain">
+                <form method="post">
+                    <h1>Connexion</h1>
+                    @if (Model.Message != null)
+                    {
+                        <div class="alert alert-danger text-center mt-2 mb-0" role="alert">
+                            @Model.Message
+                        </div>
+                    }
+
+                    <input asp-for="Input.Email" type="email" placeholder="Email" required>
+                    <input asp-for="Input.Password" type="password" placeholder="Mot de passe" required>
+
+                    <button class="button" type="submit">Se connecter</button>
+                    <a id="adapt" class="button" asp-area="" asp-page="/Authentication/Inscription">Créer un compte</a>
+                </form>
+            </div>
+            <div class="R-overlay-contain">
+                <img id="form-img" src="~/img/Well.png" alt="IMG">
+                <p>Vous n'avez pas de compte ?</p>
+                <a class=" button" id="signUp" asp-area="" asp-page="/Authentication/Inscription">Créer un compte</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-top footer">
+        <div class="container">
+            &copy; 2024 - iS Biblio  Tous droits réservés
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

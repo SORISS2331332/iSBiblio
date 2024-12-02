@@ -1,0 +1,33 @@
+﻿@page
+@model iSBiblio.Pages.ProfilModel
+@{
+    if(Model.Role == "Admin")
+    {
+        Layout = "AdminLayout";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+}
+
+
+
+<h2 class="title">Profil</h2>
+<!--Affichage des informations de l'utilisateur-->
+
+<section class="profil">
+    <div class="profile-info">
+        <i class="fas fa-user mr-2"></i> @Model.UtilisateurConnected.Prenom @Model.UtilisateurConnected.Nom
+    </div>
+    <div class="profile-info">
+        <i class="fas fa-envelope mr-2"></i> @Model.UtilisateurConnected.Email
+    </div>
+    <div class="profile-info">
+        <i class="fas fa-map-marker-alt mr-2"></i> @Model.UtilisateurConnected.Adresse
+    </div>
+
+    <div>
+        <a asp-page="/Index" class="btn btn-primary">Retour à l'accueil</a>
+    </div>
+</section>

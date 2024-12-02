@@ -1,0 +1,52 @@
+﻿@page
+@model iSBiblio.Pages.EmpruntModel
+@{
+    ViewData["Title"] = "Vos Emprunts";
+}
+
+<h2 class="title">Mes Livres</h2>
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <!--Affichage du message concernant les emprunts et retours-->
+    <p class="dossier text-center alert alert-success" role="alert">@Model.Message</p>
+}
+<div class=" container mt-5">
+    <div class="book-liste">
+        @{int nb = 1;}
+                
+        @if (Model.userEmprunts == null || !Model.userEmprunts.Any())
+        {
+            <p class="dossier text-center text-black-50 alert alert-danger" role="alert">Votre dossier de lecture est vide !</p>
+        }
+        else
+        {
+            @foreach (var info in Model.userEmprunts)
+            {
+                if (nb > 4)
+                {
+                    nb = 1;
+                }
+                var lien = "/img/livre" + nb + ".jpg";
+                nb++;
+                <div class="card book-card">
+                    <img src="@lien" class="card-img-top" alt="Couverture de Livre">
+                    <div class="card-body book-info">
+                        <h2 class="card-title">@info.Titre</h2>
+                        <p>  <span>Pris le @info.DateEmprunt</span></p>
+                        @if(info.DateRetour != null)
+                        {
+                            <p>  <span>Retour: @info.DateRetour</span></p>
+                        }
+                        <!--Gestion automatique du retour des livres-->
+                        @if((info.DateRetour > DateOnly.FromDateTime(DateTime.Now)) || info.DateRetour == null)
+                        {
+                            <p><a class="btn btn-outline-success" asp-page="/Retourner" asp-route-Id="@info.EmpruntId">Remettre</a></p>
+                        }
+                                
+                    </div>
+                </div>
+            }
+        }
+                
+    </div>
+</div>

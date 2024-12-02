@@ -1,0 +1,40 @@
+﻿@page
+@model iSBiblio.Pages.MenuLivresModel
+@{
+    ViewData["Title"] = "Notre Catalogue";
+}
+
+<h2 class="title">Livres Disponibles</h2>
+<section class="book-list">
+            
+
+    @{int nb = 1;}
+    @foreach(var item in Model.Livres){
+        if(nb > 4)
+        {
+            nb = 1;  //Utiliser 4 images seulement pour les livres(limiter le stockage)
+        }
+        var lien = "/img/livre" + nb + ".jpg";
+        nb++;
+                
+        <article class="book">
+            <img src=@lien alt="Couverture de Livre">
+            <div class="book-info">
+                <h2>@item.Titre</h2>
+                <p>  <span><i class="fas fa-user"></i>   @item.PrenomAuteur @item.Auteur</span></p>
+                <p><span><i class="fas fa-book"></i>   @item.Genre</span>   </p>
+            </div>
+            <div class="opt">
+                <p><a class="btn btn-outline-success" asp-page="#">Extrait</a></p>
+                @if (Model.IsAuthenticated)
+                {
+                        //Seuls les utilisateurs connectés peuvent emprunter des livres
+                    <p><a class="btn btn-outline-success" asp-page="Emprunter" asp-route-Id="@item.LivreId">Emprunter</a></p>
+
+                }
+                        
+            </div>
+        </article>
+
+    }
+</section>

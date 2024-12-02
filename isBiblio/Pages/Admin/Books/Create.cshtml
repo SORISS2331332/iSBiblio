@@ -1,0 +1,48 @@
+﻿@page
+@model iSBiblio.Pages.Admin.Books.CreateModel
+
+@{
+    Layout = "AdminLayout";
+    ViewData["Title"] = "Ajout de Livre";
+}
+
+<h1 class="title w-100">Ajout de Livre</h1>
+
+<hr />
+<div class="row ">
+    <div class="col-md-4 text-white">
+        <form method="post" class="adminForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Livre.Titre" class="control-label"></label>
+                <input asp-for="Livre.Titre" class="form-control" />
+                <span asp-validation-for="Livre.Titre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Livre.AuteurId" class="control-label">Auteur</label>
+                <select asp-for="Livre.AuteurId" class ="form-control" asp-items="ViewBag.AuteurId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Livre.AnneePublication" class="control-label">Publication</label>
+                <input asp-for="Livre.AnneePublication" placeholder="aaaa" class="form-control" />
+                <span asp-validation-for="Livre.AnneePublication" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Livre.Genre" class="control-label"></label>
+                <input asp-for="Livre.Genre"  class="form-control" />
+                <span asp-validation-for="Livre.Genre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Valider" class="valider text-white btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="Retour">
+    <a class="btn btn-danger text-white" asp-page="Index">Retour</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

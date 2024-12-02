@@ -1,0 +1,45 @@
+﻿@page
+@model iSBiblio.Pages.Admin.IndexModel
+
+
+@{
+    Layout = "AdminLayout";
+    ViewData["Title"] = "Emprunts en Cours";
+}
+
+<h1 class="title w-100">Emprunts en Cours</h1>
+
+<table class="adminForm table text-white">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpruntsActifs[0].Titre)
+            </th>
+            <th class="text-center">
+                Abonné
+            </th>
+            <th>
+                Date d'emprunt
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EmpruntsActifs)
+        {
+            if(item.DateRetour == null) //Afficher seulement les livres non retournés
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titre)
+                    </td>
+                    <td class="text-center">
+                        <p>@item.Email </p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateEmprunt)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

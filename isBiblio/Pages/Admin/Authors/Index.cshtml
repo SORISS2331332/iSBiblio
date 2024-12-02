@@ -1,0 +1,48 @@
+﻿@page
+@model iSBiblio.Pages.Admin.Authors.IndexModel
+
+@{
+    Layout = "AdminLayout";
+    ViewData["Title"] = "Gestion des auteurs";
+}
+
+<h1 class="title w-100">Gestion des auteurs</h1>
+
+<p>
+    <a asp-page="Create" class="valider btn btn-primary text-white">Ajouter</a>
+</p>
+<table class="adminForm table text-white">
+    <thead>
+        <tr>
+            <th>
+                Nom
+            </th>
+            <th>
+                Prénom
+            </th>
+            <th>
+                Naissance
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Auteur) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateNaissance)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.AuteurId" class="btn btn-primary">Editer</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.AuteurId" class="btn btn-danger">Retirer</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
